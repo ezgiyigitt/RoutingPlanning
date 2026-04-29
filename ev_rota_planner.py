@@ -24,6 +24,16 @@ import random
 import time
 from datetime import datetime
 from typing import List, Tuple, Optional, Dict
+from batarya_modeli import EMAHoltBataryaModeli
+from surucu_yorgunluk_modeli import EMAHoltYorgunlukModeli
+
+# ── Konfor Hafızası (deneyimsel öğrenme)
+try:
+    from surucu_konfor_hafizasi import get_konfor_hafizasi
+    KONFOR_HAFIZASI = get_konfor_hafizasi()
+except ImportError:
+    KONFOR_HAFIZASI = None
+
 
 # ── Kognitif Motor
 try:
@@ -31,16 +41,25 @@ try:
         SurucuProfilYonetici, KognitivYukAnalizci,
         DuyguRotaOptimizatoru, CokAmacliRotaOptimizatoru,
         cls_to_mod, MOD_PARAMETRELERI, CV2_VAR,
+        MLDestekliKognitivYukAnalizci
     )
     KOGNITIF_VAR = True
 except ImportError:
     KOGNITIF_VAR = False
     CokAmacliRotaOptimizatoru = None  # type: ignore
 
+try:
+    from suruş_veri_kaydedici import SurusVeriKaydedici, GpsSimulatoru
+    # MLDestekliKognitivYukAnalizci already imported from kognitif_motor or placeholder
+    from duygu_regresyonu      import SurekliDuyguMotoru, cls_ve_duygu_ile_optimize
+    GELISMIS_VAR = True
+except ImportError:
+    GELISMIS_VAR = False
+
 GOOGLE_API_KEY   = ""
 TOMTOM_API_KEY   = "9vhNo3evFfz59k6RKFrNwO7oV0Czf3bu"
 MIN_BATARYA_ESIK = 10
-TARAMA_SURE      = 15   # Gerçekçi duygu analizi için 15 saniye
+TARAMA_SURE      = 4   # Gerçekçi duygu analizi için 4 saniye
 
 # ─────────────────────────────────────────────
 #  ARAÇ VERİLERİ
@@ -526,11 +545,35 @@ def sarj_durak_planla(yol, arac_adi, baslangic_yuzde, sarj_listesi,
              "batarya_yuzde":round(baslangic_yuzde,1),
              "enerji_kwh":round(kwh,2)}]
     sarj_no = 0
+    tahmin_modeli = EMAHoltBataryaModeli(alfa=0.6, beta=0.4)
+    
+    # Ortalama segment mesafesi ve rota bilgiklerinin ön hesabı
+    kalan_kms = []
+    for j in range(len(yol)-1):
+        found_km = 1.0 # Fallback
+        for a_, b_, km_, _ in YOLLAR:
+            if (a_ == yol[j] and b_ == yol[j+1]) or (b_ == yol[j] and a_ == yol[j+1]):
+                found_km = km_
+                break
+        kalan_kms.append(found_km)
+    
+    avg_segment_len = sum(kalan_kms) / len(kalan_kms) if kalan_kms else 1.0
+    
     for i in range(len(yol)-1):
         harcanan     = seg.get((yol[i], yol[i+1]), 0)
         sonraki_kwh  = kwh - harcanan
-        sonraki_pct  = (sonraki_kwh/toplam)*100
-        if sonraki_pct < min_esik:
+        sonraki_pct  = (sonraki_kwh / toplam) * 100
+        
+        # Modeli YÜZDE üzerinden güncelle
+        tahmin_modeli.guncelle(sonraki_pct)
+        
+        # Ufuk Hesabı
+        remaining_distance = sum(kalan_kms[i+1:])
+        ufuk_h = (remaining_distance / avg_segment_len) if avg_segment_len > 0 else 0
+        
+        predicted_battery_pct = tahmin_modeli.tahmin_et(ufuk_h)
+        
+        if predicted_battery_pct < min_esik:
             ist = _en_yakin_sarj(yol[i], sarj_listesi)
             sarj_no += 1
             kwh = toplam*(hedef_yuzde/100)
@@ -637,31 +680,48 @@ def doluluk_hesapla(ist):
 
 
 # ─────────────────────────────────────────────
-#  OpenChargeMap API
+#  CANLI ŞARJ İSTASYONLARI (TomTom API)
 # ─────────────────────────────────────────────
-def ocm_sarj_cek(timeout=8):
+def canli_sarj_istasyonlari_getir(timeout=10):
+    if not TOMTOM_API_KEY: return []
     try:
-        r = requests.get("https://api.openchargemap.io/v3/poi/",
-            params={"output":"json","countrycode":"TR","latitude":39.9334,
-                    "longitude":32.8597,"distance":50,"distanceunit":"KM",
-                    "maxresults":100,"compact":True,"verbose":False},
-            timeout=timeout)
+        url = "https://api.tomtom.com/search/2/categorySearch/electric%20vehicle%20station.json"
+        params = {
+            "key": TOMTOM_API_KEY,
+            "lat": 39.9334,
+            "lon": 32.8597,
+            "radius": 50000,
+            "limit": 50,
+            "language": "tr-TR"
+        }
+        r = requests.get(url, params=params, timeout=timeout)
         r.raise_for_status()
         out = []
-        for poi in r.json():
+        for poi in r.json().get("results", []):
             try:
-                adr  = poi.get("AddressInfo",{})
-                guc  = max((b.get("PowerKW") or 0 for b in poi.get("Connections",[])), default=22)
-                tip  = "DC Hızlı" if guc>=100 else ("DC" if guc>=43 else "AC")
-                op   = (poi.get("OperatorInfo") or {}).get("Title","")
-                isim = adr.get("Title","Şarj İstasyonu")
-                if op and op not in isim: isim = f"{op} - {isim}"
-                lat, lon = adr.get("Latitude"), adr.get("Longitude")
+                p = poi.get("poi", {})
+                isim = p.get("name", "Şarj İstasyonu")
+                firma = p.get("brands", [{"name": "Genel"}])[0].get("name", "Genel")
+                
+                # Güç ve Tip Analizi
+                guc = 22
+                tip = "AC"
+                cp = poi.get("chargingPark", {})
+                connectors = cp.get("connectors", [])
+                for c in connectors:
+                    kw = c.get("ratedPowerKW", 0)
+                    if kw > guc:
+                        guc = kw
+                        ctype = c.get("currentType", "")
+                        if "DC" in ctype or kw > 43:
+                            tip = "DC Hızlı"
+                
+                lat, lon = poi.get("position", {}).get("lat"), poi.get("position", {}).get("lon")
                 if lat and lon:
-                    out.append({"isim":isim[:60],"lat":float(lat),"lon":float(lon),
-                                "guc":guc,"tip":tip,"firma":op[:20],"kaynak":"OpenChargeMap"})
+                    out.append({"isim": isim[:60], "lat": float(lat), "lon": float(lon),
+                                "guc": guc, "tip": tip, "firma": firma[:20], "kaynak": "TomTom API (Canlı)"})
             except Exception: continue
-        return out if len(out) >= 5 else []
+        return out
     except Exception: return []
 
 
@@ -681,24 +741,48 @@ def harita_olustur(bas, bit, arac_adi, bat_pct, rotalar, sarj_ist,
         "mesafe": {"renk": "#00FF88", "ag": 6, "lbl": "🛣 En Kısa Yol"},
         "sure":   {"renk": "#00CFFF", "ag": 5, "lbl": "⚡ En Hızlı Yol"},
         "enerji": {"renk": "#FFB800", "ag": 5, "lbl": "🔋 En Az Enerji"},
-        "mo":     {"renk": "#C77DFF", "ag": 6, "lbl": "🎯 Çok Amaçlı Optimal"},
+        "mo":     {"renk": "#C77DFF", "ag": 6, "lbl": "⭐ Size Özel Rota"},
     }
-    aktif_yol = rotalar.get(aktif, [])
-
+    
+    # Rotaları aynı yola sahip olanlara göre grupla (üst üste çizilip tooltip karışmasını önler)
+    yol_gruplari = {}
     for krit, yol in rotalar.items():
         if not yol: continue
-        stil   = STIL[krit]
-        coords = [ANKARA_DUGUMLER[d][:2] for d in yol]
-        met    = yol_metrikleri(yol, arac_adi)
+        yol_tup = tuple(yol)
+        if yol_tup not in yol_gruplari:
+            yol_gruplari[yol_tup] = []
+        yol_gruplari[yol_tup].append(krit)
+
+    aktif_yol = rotalar.get(aktif, [])
+    aktif_tup = tuple(aktif_yol)
+
+    for yol_tup, krit_listesi in yol_gruplari.items():
+        # Bu grupta aktif rota varsa, rengi ve kalınlığı o belirler
+        if aktif in krit_listesi:
+            ana_krit = aktif
+        else:
+            # Öncelik sırası: mo > enerji > sure > mesafe
+            ana_krit = krit_listesi[0]
+            
+        stil = STIL[ana_krit]
+        lbl_birlesik = " + ".join([STIL[k]["lbl"] for k in krit_listesi])
+        coords = [ANKARA_DUGUMLER[d][:2] for d in yol_tup]
+        met = yol_metrikleri(list(yol_tup), arac_adi)
+        
+        is_aktif = (yol_tup == aktif_tup)
+        
         folium.PolyLine(
             locations=coords, color=stil["renk"],
-            weight=stil["ag"] if krit==aktif else 2,
-            opacity=1.0 if krit==aktif else 0.25,
-            tooltip=stil["lbl"],
+            weight=stil["ag"] if is_aktif else 3,
+            opacity=1.0 if is_aktif else 0.35,
+            tooltip=lbl_birlesik,
             popup=folium.Popup(
-                f"<b>{stil['lbl']}</b><br>📏 {met['mesafe_km']} km<br>"
-                f"⏱ {met['sure_dk']:.0f} dk<br>⚡ {met['enerji_kwh']} kWh",
-                max_width=200)
+                f"<div style='font-family:Arial;font-size:12px'>"
+                f"<b style='color:{stil['renk']}'>{lbl_birlesik}</b><br><br>"
+                f"📏 {met['mesafe_km']} km<br>"
+                f"⏱ {met['sure_dk']:.0f} dk<br>"
+                f"⚡ {met['enerji_kwh']} kWh</div>",
+                max_width=250)
         ).add_to(m)
 
     plan_map = {a["durum"]: a for a in sarj_plan}
@@ -818,7 +902,8 @@ def harita_olustur(bas, bit, arac_adi, bat_pct, rotalar, sarj_ist,
       <b style="font-size:13px">🗺 Gösterge</b><br><br>
       <span style="color:#00FF88">━━</span> En Kısa &nbsp;
       <span style="color:#00CFFF">━━</span> En Hızlı &nbsp;
-      <span style="color:#FFB800">━━</span> En Az Enerji<br><br>
+      <span style="color:#FFB800">━━</span> En Az Enerji &nbsp;
+      <span style="color:#C77DFF">━━</span> Size Özel<br><br>
       <b>Şarj:</b><br>
       <span style="color:#ff6b6b">⚡</span> DC Hızlı (100kW+) &nbsp;
       <span style="color:#ffa500">🔌</span> DC &nbsp;
@@ -865,106 +950,120 @@ def harita_olustur(bas, bit, arac_adi, bat_pct, rotalar, sarj_ist,
         fsk = opt_bilgi.get("f_skorlar", {})
         met = opt_bilgi.get("metrikleri", {})
         cls_v = opt_bilgi.get("cls", "—")
-        mod_v = opt_bilgi.get("mod", "—").title()
+        mod_v = opt_bilgi.get("mod", "—")
         w_e_p = f"{aw.get('w_enerji', 0):.0%}"
         w_t_p = f"{aw.get('w_sure',   0):.0%}"
         w_c_p = f"{aw.get('w_konfor', 0):.0%}"
+        MOD_EMOJI = {"yorgun": "😴 Yorgun", "stresli": "😰 Stresli",
+                     "notr": "😐 Normal", "enerjik": "😄 Enerjik"}
+        mod_goster = MOD_EMOJI.get(mod_v, "😐 Normal")
 
         KRIT_BASLIK = {
-            "mesafe": "B1: Standart (En Kısa)",
-            "sure":   "B2: Süre Odaklı (Hızlı)",
-            "enerji": "B3: Eko Rota (Enerji)",
-            "mo":     "▶ Önerilen (Çok Amaçlı)"
+            "mesafe": "🛣 En Kısa Yol",
+            "sure":   "⚡ En Hızlı Yol",
+            "enerji": "🔋 En Az Enerji",
+            "mo":     "⭐ Size Özel Rota",
         }
         en_iyi_krit = min(fsk, key=fsk.get) if fsk else "—"
 
-        # Tablo Satırları
-        tr_html = ""
-        # Sabit sıralama: B1, B2, B3, MO
-        for k in ["mesafe", "sure", "enerji", "mo"]:
+        # Daha Sade ve Modern Liste Stili
+        liste_html = ""
+        for k in ["mo", "sure", "enerji", "mesafe"]:
             if k not in fsk: continue
             skor   = fsk[k]
             mm     = met.get(k, {})
             sure_v = round(mm.get("sure_dk", 0))
             en_v   = mm.get("enerji_kwh", 0)
-            renk   = "#C77DFF" if k == "mo" else ("#00FF88" if k == en_iyi_krit else "#aaa")
-            fw     = "bold" if k == en_iyi_krit or k == "mo" else "normal"
-            tr_html += f"""
-            <tr style="color:{renk};font-weight:{fw}">
-              <td style="text-align:left;padding:2px 0;">{KRIT_BASLIK[k]}</td>
-              <td style="text-align:right">{sure_v}dk</td>
-              <td style="text-align:right">{en_v}kWh</td>
-              <td style="text-align:right">{skor:.3f}</td>
-            </tr>
+            uygunluk = round((1 - skor) * 100)
+            
+            if k == "mo":
+                renk = "#C77DFF"
+                bg_renk = "rgba(199, 125, 255, 0.15)"
+                border = "border-left: 3px solid #C77DFF;"
+            else:
+                renk = "#bbb"
+                bg_renk = "rgba(255, 255, 255, 0.03)"
+                border = "border-left: 3px solid transparent;"
+                
+            liste_html += f"""
+            <div style="background:{bg_renk}; {border} padding:6px 10px; margin-bottom:6px; border-radius:4px;">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="color:{renk}; font-weight:bold; font-size:11px;">{KRIT_BASLIK[k]}</span>
+                <span style="color:#00FF88; font-size:10px; font-weight:bold;">%{uygunluk} Uygun</span>
+              </div>
+              <div style="color:#888; font-size:10px; margin-top:3px;">
+                ⏱ {sure_v} dk &nbsp;•&nbsp; ⚡ {en_v} kWh
+              </div>
+            </div>
             """
-
-        # Ağırlık bar'ları
-        def _bar(val_str, renk, g=80):
-            pct = int(float(val_str.strip('%')) / 100 * g)
-            return (f"<div style='background:#1a1d30;border-radius:3px;height:8px;width:{g}px;display:inline-block;vertical-align:middle;margin-left:5px'>"
-                    f"<div style='background:{renk};height:8px;border-radius:3px;width:{pct}px'></div></div>")
 
         opt_panel = f"""
         <div style="position:fixed;bottom:28px;right:28px;z-index:9999;
             background:rgba(13,15,25,0.96);border:1px solid #7c4dff;
-            border-radius:12px;padding:14px 18px;
-            font-family:Arial;font-size:11px;color:#ddd;
-            box-shadow:0 6px 30px rgba(124,77,255,.4);min-width:300px">
-          <b style="font-size:13px;color:#C77DFF">🎯 Seçim Ağırlıkları (CLS: {cls_v})</b>
-          <div style="margin:6px 0">
-            <div style="margin:2px 0"><span style="display:inline-block;width:90px;color:#FFB800">⚡ Enerji {w_e_p}</span> {_bar(w_e_p, '#FFB800')}</div>
-            <div style="margin:2px 0"><span style="display:inline-block;width:90px;color:#00CFFF">⏱ Süre &nbsp; {w_t_p}</span> {_bar(w_t_p, '#00CFFF')}</div>
-            <div style="margin:2px 0"><span style="display:inline-block;width:90px;color:#C77DFF">😊 Konfor {w_c_p}</span> {_bar(w_c_p, '#C77DFF')}</div>
+            border-radius:12px;padding:16px;
+            font-family:Arial, sans-serif;color:#ddd;
+            box-shadow:0 6px 30px rgba(124,77,255,.3);min-width:270px">
+            
+          <div style="margin-bottom:12px;">
+            <b style="color:#C77DFF; font-size:14px;">🧭 Rotanızı Nasıl Seçtik?</b>
           </div>
-          <hr style="margin:8px 0;border-color:#3a2a5a">
-          <b style="font-size:12px;color:#eee">📊 Baseline Sistem Karşılaştırması</b>
-          <table style="width:100%;font-size:10px;margin-top:6px;border-collapse:collapse">
-            <tr style="color:#666;border-bottom:1px solid #333">
-              <th style="padding-bottom:3px;text-align:left">Algoritma (Rota)</th>
-              <th style="padding-bottom:3px;text-align:right">Süre</th>
-              <th style="padding-bottom:3px;text-align:right">Enerji</th>
-              <th style="padding-bottom:3px;text-align:right">F(r) ↓</th>
-            </tr>
-            {tr_html}
-          </table>
-          <div style="margin-top:6px;color:#888;font-size:9px">* Baseline 1,2,3 sadece tek hedefe odaklanan standart Dijkstra (veya A*) algoritması temsilidir.<br>* Önerilen model ise duygu durumuna (CLS) göre bu üç değişkeni optimize eden ÇAMD yaklaşımıdır.</div>
+          
+          <div style="background:rgba(255,255,255,0.06); padding:10px; border-radius:8px; margin-bottom:14px;">
+            <div style="color:#999; font-size:10px; margin-bottom:4px;">Tespit Edilen Sürücü Durumu:</div>
+            <div style="color:#fff; font-size:14px; font-weight:bold;">{mod_goster}</div>
+          </div>
+          
+          <div style="margin-bottom:14px; padding-bottom:12px; border-bottom:1px solid #3a2a5a;">
+            <div style="color:#999; font-size:10px; margin-bottom:6px;">Rota belirlenirken önem sırası:</div>
+            <div style="display:flex; justify-content:space-between; font-size:11px; font-weight:bold;">
+              <span style="color:#FFB800">⚡ Enerji: {w_e_p}</span>
+              <span style="color:#00CFFF">⏱ Süre: {w_t_p}</span>
+              <span style="color:#C77DFF">😊 Konfor: {w_c_p}</span>
+            </div>
+          </div>
+          
+          <b style="font-size:11px; color:#aaa; display:block; margin-bottom:8px;">Alternatif Rotalar:</b>
+          {liste_html}
+          
         </div>"""
         m.get_root().html.add_child(folium.Element(opt_panel))
 
     cikti = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                          "ankara_ev_rota.html")
     m.save(cikti)
-    return cikti
+    return cikti, m
 
 
 # ═════════════════════════════════════════════
-#  TEMA & RENK PALETİ
+#  TEMA & RENK PALETİ  —  Apple HIG
 # ═════════════════════════════════════════════
-BG_ROOT  = "#0d0f1a"
-BG_PANEL = "#141628"
-BG_CARD  = "#1a1d30"
-BG_INPUT = "#1f2235"
-FG_MAIN  = "#e8e8f0"
-FG_SUB   = "#7a7a9a"
-FG_MUTED = "#3d3d5c"
-ACCENT   = "#00e676"
-ACCENT2  = "#00d4ff"
-WARN     = "#ffb800"
-DANGER   = "#ff4444"
-PURPLE   = "#7c4dff"
+BG_ROOT  = "#F5F5F7"   # Apple off-white arka plan
+BG_PANEL = "#FFFFFF"   # Saf beyaz panel
+BG_CARD  = "#FFFFFF"   # Kart yüzeyi
+BG_INPUT = "#F2F2F7"   # Giriş alanı (iOS secondary bg)
+FG_MAIN  = "#1C1C1E"   # Apple label (near-black)
+FG_SUB   = "#6E6E73"   # Apple secondary label
+FG_MUTED = "#C7C7CC"   # Apple tertiary label
+ACCENT   = "#34C759"   # iOS Green (başarı / onay)
+ACCENT2  = "#007AFF"   # iOS Blue (birincil eylem)
+WARN     = "#FF9500"   # iOS Orange
+DANGER   = "#FF3B30"   # iOS Red
+PURPLE   = "#5856D6"   # iOS Indigo
+SEPARATOR= "#E5E5EA"   # Ayırıcı çizgi
 
-FONT_H1  = ("Segoe UI", 22, "bold")
-FONT_H2  = ("Segoe UI", 15, "bold")
-FONT_H3  = ("Segoe UI", 12, "bold")
-FONT_BODY= ("Segoe UI", 10)
-FONT_SM  = ("Segoe UI", 9)
-FONT_XS  = ("Segoe UI", 8)
-FONT_MONO= ("Consolas", 10)
+FONT_H1  = ("Helvetica Neue", 22, "bold")
+FONT_H2  = ("Helvetica Neue", 15, "bold")
+FONT_H3  = ("Helvetica Neue", 12, "bold")
+FONT_BODY= ("Helvetica Neue", 10)
+FONT_SM  = ("Helvetica Neue", 9)
+FONT_XS  = ("Helvetica Neue", 8)
+FONT_MONO= ("Menlo",          10)
 
 MOD_ISIM  = {"yorgun":"😴 Yorgun", "stresli":"😰 Stresli",
              "notr":"😐 Nötr",    "enerjik":"😄 Enerjik"}
 KRIT_ISIM = {"mesafe":"🛣 En Kısa Rota", "sure":"⚡ En Hızlı Rota",
              "enerji":"🔋 En Az Enerjili Rota"}
+
 
 
 # ═════════════════════════════════════════════
@@ -980,8 +1079,8 @@ class EVRotaGUI:
     # ─────────────────────────────────────────
     def __init__(self):
         self.root = tk.Tk()
-        self.root.title("⚡ AffectEV — Ankara EV Rota Planlayıcı")
-        self.root.geometry("780x680")
+        self.root.title("AffectEV")
+        self.root.geometry("800x700")
         self.root.configure(bg=BG_ROOT)
         self.root.resizable(False, False)
 
@@ -1003,8 +1102,17 @@ class EVRotaGUI:
             self.pm  = SurucuProfilYonetici()
             profil   = self.pm.profil_al(self.aktif_uid)
             if profil:
-                self.klz = KognitivYukAnalizci(profil)
+                if GELISMIS_VAR:
+                    self.klz = MLDestekliKognitivYukAnalizci(profil)
+                else:
+                    self.klz = KognitivYukAnalizci(profil)
             self.dro = DuyguRotaOptimizatoru(self.pm)
+            
+        if GELISMIS_VAR:
+            self.kaydedici = SurusVeriKaydedici()
+            self.duygu_motor = SurekliDuyguMotoru(
+                self.pm.profil_al(self.aktif_uid) if self.pm else None
+            )
 
         # Sayfa sistemi
         self.sayfa_frames: Dict[str, tk.Frame] = {}
@@ -1020,6 +1128,7 @@ class EVRotaGUI:
         try: self.root.after(0, lambda: self.durum_lbl.config(text=t))
         except Exception: pass
 
+
     def _sayfa_goster(self, sayfa_adi: str):
         for f in self.sayfa_frames.values():
             f.place_forget()
@@ -1031,24 +1140,24 @@ class EVRotaGUI:
         idx = self.SAYFALAR.index(self.aktif_sayfa) if self.aktif_sayfa in self.SAYFALAR else -1
         for i, (dot, lbl) in enumerate(self._prog_lbls):
             if i < idx:
-                dot.config(bg=ACCENT, fg=BG_ROOT, text="✓")
+                dot.config(bg=ACCENT, fg="#FFFFFF", text="✓")
                 lbl.config(fg=ACCENT)
             elif i == idx:
-                dot.config(bg=ACCENT2, fg=BG_ROOT, text=str(i+1))
+                dot.config(bg=ACCENT2, fg="#FFFFFF", text=str(i+1))
                 lbl.config(fg=ACCENT2)
             else:
-                dot.config(bg=FG_MUTED, fg=FG_SUB, text=str(i+1))
+                dot.config(bg=FG_MUTED, fg="#FFFFFF", text=str(i+1))
                 lbl.config(fg=FG_MUTED)
 
     def _sarj_guncelle(self):
-        self._durum("🔄 Şarj istasyonları yükleniyor...")
-        d = ocm_sarj_cek(10)
+        self._durum("🔄 Canlı Şarj İstasyonları (TomTom API) yükleniyor...")
+        d = canli_sarj_istasyonlari_getir(10)
         if d:
             self.sarj_ist = d
-            self.sarj_kaynagi = f"OpenChargeMap ({len(d)} ist.)"
-            self._durum(f"✅ {len(d)} şarj istasyonu yüklendi")
+            self.sarj_kaynagi = f"TomTom API ({len(d)} ist.)"
+            self._durum(f"✅ {len(d)} canlı şarj istasyonu yüklendi")
         else:
-            self._durum(f"⚠️  {len(self.sarj_ist)} yerel istasyon aktif")
+            self._durum(f"⚠️  API yanıt vermedi, {len(self.sarj_ist)} yerel istasyon aktif")
 
     # ─────────────────────────────────────────
     #  ANA GUI OLUŞTUR
@@ -1116,37 +1225,44 @@ class EVRotaGUI:
         self.sayfa_frames[sayfa_adi] = f
         return f
 
-    # ─── Kart bileşeni
-    def _kart(self, parent, baslik: str = "", renk: str = ACCENT2, pady=(10, 6), padx=24) -> tk.Frame:
+    # ─── Kart bileşeni — Apple card stili
+    def _kart(self, parent, baslik: str = "", renk: str = ACCENT2,
+              pady=(8, 6), padx=24) -> tk.Frame:
         outer = tk.Frame(parent, bg=BG_ROOT)
         outer.pack(fill="x", padx=padx, pady=pady)
         if baslik:
             tk.Label(outer, text=baslik, font=FONT_H3,
-                     bg=BG_ROOT, fg=renk).pack(anchor="w", pady=(0, 4))
-        card = tk.Frame(outer, bg=BG_CARD, padx=18, pady=14)
-        card.pack(fill="x")
+                     bg=BG_ROOT, fg=FG_SUB).pack(anchor="w", pady=(0, 4))
+        # Beyaz kart + ince gri kenarlık
+        border = tk.Frame(outer, bg=SEPARATOR, bd=0)
+        border.pack(fill="x")
+        card = tk.Frame(border, bg=BG_CARD, padx=18, pady=14)
+        card.pack(fill="x", padx=1, pady=1)
         return card
 
-    # ─── Navigasyon butonları
+    # ─── Navigasyon butonları — Apple pill buton stili
     def _nav_bar(self, parent, geri_cmd=None, ileri_cmd=None,
-                 ileri_text="Sonraki  →", ileri_renk=ACCENT2,
+                 ileri_text="Devam  →", ileri_renk=ACCENT2,
                  ileri_disabled=False) -> tk.Frame:
-        bar = tk.Frame(parent, bg=BG_ROOT, pady=10)
+        # İnce üst ayırıcı
+        tk.Frame(parent, bg=SEPARATOR, height=1).pack(fill="x", side="bottom")
+        bar = tk.Frame(parent, bg=BG_PANEL, pady=14)
         bar.pack(fill="x", padx=24, side="bottom")
         if geri_cmd:
             tk.Button(bar, text="←  Geri", command=geri_cmd,
-                      bg=BG_CARD, fg=FG_SUB,
+                      bg=BG_INPUT, fg=FG_SUB,
                       font=FONT_BODY, relief="flat",
                       cursor="hand2", padx=18, pady=8
                       ).pack(side="left")
         if ileri_cmd:
             state = "disabled" if ileri_disabled else "normal"
             b = tk.Button(bar, text=ileri_text, command=ileri_cmd,
-                          bg=ileri_renk, fg=BG_ROOT,
+                          bg=ACCENT2 if not ileri_disabled else FG_MUTED,
+                          fg="#FFFFFF",
                           font=FONT_H3, relief="flat",
                           cursor="hand2", padx=22, pady=9,
                           state=state,
-                          activebackground=ACCENT)
+                          activebackground="#0056CC")
             b.pack(side="right")
             return b
         return bar
@@ -1324,8 +1440,10 @@ class EVRotaGUI:
         self.analiz_geri_say_lbl.config(text="Lütfen kameraya bakın...", fg=WARN)
 
         def analiz():
-            kamera_acildi = self.klz.kamera_baslat()
+            kamera_acildi = self.klz.kamera_baslat(display=True)
             cls_ornekler  = []
+            # Yorgunluk Eğrisi Tahminleyicisi Başlatıldı
+            y_modeli = EMAHoltYorgunlukModeli(alfa=0.6, beta=0.4)
 
             for saniye in range(TARAMA_SURE, 0, -1):
                 # Geri sayım güncelle
@@ -1347,6 +1465,8 @@ class EVRotaGUI:
                     c = max(0.0, min(100.0, c))
 
                 cls_ornekler.append(c)
+                # Trend hesabı için model beslemesi
+                y_modeli.guncelle(c)
 
                 # Anlık CLS'yi ekranda göster
                 self.root.after(0, lambda cv=c: self._analiz_cls_goster(cv))
@@ -1354,14 +1474,27 @@ class EVRotaGUI:
             if kamera_acildi:
                 self.klz.kamera_durdur()
 
-            # Ağırlıklı ortalama (son örnekler daha ağırlıklı — stabilize olma simülasyonu)
+            # Ağırlıklı ortalama
             if len(cls_ornekler) >= 4:
-                w = list(range(1, len(cls_ornekler) + 1))  # artan ağırlık
-                cls = sum(c*ww for c,ww in zip(cls_ornekler, w)) / sum(w)
+                w = list(range(1, len(cls_ornekler) + 1))
+                mevcut_cls = sum(c*ww for c,ww in zip(cls_ornekler, w)) / sum(w)
             else:
-                cls = sum(cls_ornekler) / len(cls_ornekler) if cls_ornekler else 40.0
+                mevcut_cls = sum(cls_ornekler) / len(cls_ornekler) if cls_ornekler else 40.0
 
-            cls = round(cls, 1)
+            # --- PREDICTIVE FATIGUE DECISION ---
+            # İleriye dönük 20 adımlık (örn: ~45 dk sürüş ufku) yorgunluk simülasyonu
+            gelecek_cls = y_modeli.tahmin_et(20)
+            
+            # Dinamik Rota Sapması (Soft Constraint):
+            # Eğer sürücünün trendi hızlı yorulmaya işaret ediyorsa (trend > 0.5) ve gelecek CLS yüksek seviyelere 
+            # (stresli bölge > 75.0) ulaşacaksa; sistemi 'şimdiden' aşırı stresli farz et! Böylece optimizasyon 
+            # katmanı (%100 Konfor önceliği ile) rotayı hemen baştan güvenliğe uygun esnetecek.
+            if y_modeli.t_t and y_modeli.t_t > 0.5 and gelecek_cls > 75.0:
+                print(f"[PREDICTIVE FATIGUE ACTIVED] Sürücüde tükenme trendi! Mevcut: {mevcut_cls:.1f} -> Tahmini MolaCL: {gelecek_cls:.1f}")
+                cls = round(gelecek_cls, 1)
+            else:
+                cls = round(mevcut_cls, 1)
+
             self.aktif_cls = cls
             self.aktif_mod = cls_to_mod(cls)
 
@@ -1860,11 +1993,11 @@ class EVRotaGUI:
             p = self.cls_params
             mod_bilgi = p
             if self.oto_mod_var.get():
-                krit          = p.get("rota_krit", krit)
                 sarj_esik     = p.get("sarj_esik",  sarj_esik)
                 sarj_hedef    = p.get("sarj_hedef", sarj_hedef)
                 tuk_carpan_ek = p.get("tuk_carpan", 1.0)
-                self.rota_var.set(krit)
+                # Kullanıcı seçimi burada KORUNUYOR.
+                # Sistem önerisi aşağıda F(r) analizi sonrası uygulanacak.
 
         if self.graf.arac_adi != arac:
             self.graf._guncelle(arac)
@@ -1879,12 +2012,21 @@ class EVRotaGUI:
         mo_detay: Dict = {}
         if KOGNITIF_VAR and CokAmacliRotaOptimizatoru is not None:
             # 1) CLS → ağırlıklar
-            w_e, w_t, w_c = CokAmacliRotaOptimizatoru.agirlik_hesapla(self.aktif_cls)
+            if GELISMIS_VAR and hasattr(self, 'duygu_motor'):
+                w_e, w_t, w_c = self.duygu_motor.rota_agirliklari(self.aktif_cls)
+                duygu = self.duygu_motor.duygu_tahmin(self.aktif_cls)
+            else:
+                w_e, w_t, w_c = CokAmacliRotaOptimizatoru.agirlik_hesapla(self.aktif_cls)
 
-            # 2) Ağırlıklı Dijkstra ile 4. aday rota
+            # 2) Ağırlıklı Dijkstra ile 4. aday rota (SADECE görsel karşılaştırma içindir)
             mo_yol, _ = self.graf.cok_amacli_dijkstra(bas, bit, w_e, w_t, w_c)
             if mo_yol:
-                rotalar["mo"] = mo_yol
+                # Mesafe kısıtı: çok amaçlı rota en kısa rotadan 1.5× daha uzun olamaz
+                mo_met  = yol_metrikleri(mo_yol, arac)
+                ref_met = yol_metrikleri(rotalar.get("mesafe", mo_yol), arac)
+                if ref_met["mesafe_km"] > 0 and mo_met["mesafe_km"] <= ref_met["mesafe_km"] * 1.5:
+                    rotalar["mo"] = mo_yol
+                # 1.5×'i aşıyorsa "mo" eklenmez → haritada görünmez
 
             # 3) Her rota için metrik + konfor skoru
             met_tum   = {k: yol_metrikleri(v, arac) for k, v in rotalar.items() if v}
@@ -1893,15 +2035,43 @@ class EVRotaGUI:
                 for k, v in rotalar.items() if v
             }
 
-            # 4) Objective function: F(r) en küçük aday
+            # 4) Objective function: F(r) skoru hesapla
             mo_krit, mo_f, mo_detay = CokAmacliRotaOptimizatoru.en_iyi_rota_sec(
-                rotalar, met_tum, konfor_sk, self.aktif_cls)
+                rotalar, met_tum, konfor_sk, self.aktif_cls,
+                komsular        = self.graf.komsular,
+                ankara_dugumler = ANKARA_DUGUMLER,
+                baslangic       = bas,
+                bitis           = bit,
+            )
 
-            # 5) Oto modda objective function kararını uygula
+            # 5) NSGA-II rotalar["mo"]'yu kendi değeriyle ezmiş olabilir → tekrar doğrula
+            if "mo" in rotalar:
+                mo_recheck  = yol_metrikleri(rotalar["mo"], arac)
+                ref_recheck = yol_metrikleri(rotalar.get("mesafe", []), arac)
+                
+                gecerli = True
+                if ref_recheck["mesafe_km"] > 0:
+                    oran = mo_recheck["mesafe_km"] / ref_recheck["mesafe_km"]
+                    if oran < 0.9 or oran > 1.5:
+                        gecerli = False
+                
+                if not gecerli or mo_recheck["mesafe_km"] == 0:
+                    # Aşırı uzun veya geçersiz/kopuk rota (0 km) → haritadan ve tablodan kaldır
+                    del rotalar["mo"]
+                    mo_detay.get("f_skorlar", {}).pop("mo", None)
+                    mo_detay.get("metrikleri", {}).pop("mo", None)
+                else:
+                    # Geçerli → met_tum ve mo_detay'ı gerçek metriklerle güncelle
+                    met_tum["mo"] = mo_recheck
+                    mo_detay.setdefault("metrikleri", {})["mo"] = mo_recheck
+                    konfor_sk["mo"] = CokAmacliRotaOptimizatoru.rota_konfor_skoru(
+                        rotalar["mo"], ANKARA_DUGUMLER, YOLLAR)
+
+            # 6) Oto modda aktif rotayı belirle
+            # DÜZELTME: Artık "mo" rotası ana (aktif) rota olarak seçilebilir.
             if self.oto_mod_var.get():
                 krit = mo_krit
-                if krit in ("mesafe", "sure", "enerji"):
-                    self.rota_var.set(krit)
+                self.rota_var.set(krit)
 
         # ── Aktif rota ──────────────────────────────────────────────
         aktif_yol = rotalar.get(krit, []) or rotalar.get("enerji", [])
@@ -1919,7 +2089,7 @@ class EVRotaGUI:
             aktif_yol, arac, bat, self.sarj_ist,
             min_esik=sarj_esik, hedef_yuzde=sarj_hedef)
 
-        html_path = harita_olustur(
+        html_path, m_obj = harita_olustur(
             bas, bit, arac, bat, rotalar, self.sarj_ist, krit,
             sure_bilgi, sarj_plan, sarj_sayisi,
             self.sarj_kaynagi, kognitif=mod_bilgi, opt_bilgi=mo_detay)
@@ -1954,11 +2124,17 @@ class EVRotaGUI:
         if mo_detay:
             aw   = mo_detay.get("agirliklar", {})
             fsk  = mo_detay.get("f_skorlar", {})
+            nsga2_aktif = mo_detay.get("nsga2_aktif", False)
+            nsga2_bilgi = mo_detay.get("nsga2_detay", {})
+            nsga2_etiket = ""
+            if nsga2_aktif and nsga2_bilgi:
+                pb = nsga2_bilgi.get('pareto_boyutu', 0)
+                nsga2_etiket = f"  🧬 NSGA-II (Pareto:{pb})"
             opt_str = (
                 f"\n🎯 Objective F={min(fsk.values(), default=0):.4f}  "
                 f"[⚡{aw.get('w_enerji',0):.0%} "
                 f"⏱{aw.get('w_sure',0):.0%} "
-                f"😊{aw.get('w_konfor',0):.0%}]"
+                f"😊{aw.get('w_konfor',0):.0%}]{nsga2_etiket}"
             )
 
         ozet_text = (
@@ -1977,6 +2153,108 @@ class EVRotaGUI:
         self._durum(f"✅ Harita oluşturuldu — {bas} → {bit}")
         self._sayfa_goster("harita")
         webbrowser.open(f"file://{os.path.abspath(html_path)}")
+
+        if GELISMIS_VAR and hasattr(self, 'kaydedici'):
+            self.kaydedici.sefer_baslat(self.aktif_uid)
+            for nokta in GpsSimulatoru(ANKARA_DUGUMLER).rota_sim_noktalari(aktif_yol):
+                self.kaydedici.nokta_ekle(nokta["lat"], nokta["lon"], nokta["hiz_kmsa"])
+            self.kaydedici.sefer_bitir(
+                cls_gecmis=self.klz._cls_gecmis if hasattr(self.klz, '_cls_gecmis') else [self.aktif_cls],
+                rota_dugum_listesi=aktif_yol,
+                arac_adi=arac,
+                mod=self.aktif_mod
+            )
+
+        # ── Geri Bildirim Anketi: AI'nin konfor hafizasini besle
+        self.root.after(1500, lambda: self._geri_bildirim_anketi_goster(aktif_yol))
+
+    def _geri_bildirim_anketi_goster(self, yol: list):
+        """
+        Rota haritasi actiktan sonra kullaniciya 1-5 konfor puani sorar
+        ve bu bilgiyi NSGA-II'nin kullandigi konfor hafizasina yazar.
+        """
+        if KONFOR_HAFIZASI is None or len(yol) < 2:
+            return
+
+        pencere = tk.Toplevel(self.root)
+        pencere.title("Rota Geri Bildirimi")
+        pencere.geometry("390x230")
+        pencere.resizable(False, False)
+        pencere.grab_set()
+
+        try:
+            pencere.configure(bg="#1a1a2e")
+        except Exception:
+            pass
+
+        tk.Label(
+            pencere,
+            text="Bu rotayi nasil buldunuz?",
+            font=("Segoe UI", 13, "bold"),
+            bg="#1a1a2e", fg="#e0e0e0"
+        ).pack(pady=(18, 4))
+
+        tk.Label(
+            pencere,
+            text="Konfor puaniniz gelecek rotayi iyilestirir (NSGA-II ogrenir).",
+            font=("Segoe UI", 9),
+            bg="#1a1a2e", fg="#9e9eb8"
+        ).pack(pady=(0, 10))
+
+        puan_var = tk.IntVar(value=3)
+
+        cerceve = tk.Frame(pencere, bg="#1a1a2e")
+        cerceve.pack()
+
+        yildiz_butonlar = []
+
+        def yildiz_guncelle(deger):
+            for i, btn in enumerate(yildiz_butonlar):
+                btn.config(fg="#FFD700" if (i + 1) <= deger else "#555577")
+
+        for i in range(1, 6):
+            val = i
+            btn = tk.Button(
+                cerceve,
+                text="★",
+                font=("Segoe UI", 24),
+                bg="#1a1a2e",
+                fg="#FFD700" if i <= 3 else "#555577",
+                relief="flat",
+                activebackground="#1a1a2e",
+                cursor="hand2",
+                command=lambda v=val: [puan_var.set(v), yildiz_guncelle(v)]
+            )
+            btn.pack(side="left", padx=4)
+            yildiz_butonlar.append(btn)
+
+        def kaydet_ve_kapat():
+            puan = puan_var.get()
+            try:
+                KONFOR_HAFIZASI.guncelle(yol, puan)
+                print(f"[KonforHafiza] Rota puanlandi: {puan}/5 ")
+            except Exception as e:
+                print(f"[KonforHafiza] Kaydedilemedi: {e}")
+            pencere.destroy()
+
+        btn_cerceve = tk.Frame(pencere, bg="#1a1a2e")
+        btn_cerceve.pack(pady=14)
+
+        tk.Button(
+            btn_cerceve, text="Kaydet",
+            font=("Segoe UI", 10, "bold"),
+            bg="#4CAF50", fg="white",
+            relief="flat", padx=14, pady=6,
+            cursor="hand2", command=kaydet_ve_kapat
+        ).pack(side="left", padx=8)
+
+        tk.Button(
+            btn_cerceve, text="Atla",
+            font=("Segoe UI", 10),
+            bg="#333355", fg="#9e9eb8",
+            relief="flat", padx=14, pady=6,
+            cursor="hand2", command=pencere.destroy
+        ).pack(side="left", padx=4)
 
     def calistir(self):
         self.root.mainloop()

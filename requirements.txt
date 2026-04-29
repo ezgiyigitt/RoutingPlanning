@@ -1,1 +1,11 @@
-folium>=0.14.0
+streamlit
+folium
+streamlit-folium
+opencv-python
+numpy
+scikit-learn
+joblib
+requests
+tomtom-rest-python
+googlemaps
+cryptography

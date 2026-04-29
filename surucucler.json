@@ -149,8 +149,8 @@
       1.4503,
       -1.0374
     ],
-    "taninma_dogrulugu": 0.728,
-    "kullanim_sayisi": 8,
+    "taninma_dogrulugu": 0.76,
+    "kullanim_sayisi": 10,
     "suruc_gecmis": [
       {
         "tarih": "2026-03-14",
@@ -784,11 +784,35 @@
             "mod": "notr"
           }
         ]
+      },
+      {
+        "tarih": "2026-04-15",
+        "seferler": [
+          {
+            "saat": 14,
+            "km": 15.2,
+            "cls_ort": 16.9,
+            "tuk_carpan": 1.0,
+            "mod": "enerjik"
+          }
+        ]
+      },
+      {
+        "tarih": "2026-04-27",
+        "seferler": [
+          {
+            "saat": 11,
+            "km": 80.0,
+            "cls_ort": 100.0,
+            "tuk_carpan": 1.0,
+            "mod": "yorgun"
+          }
+        ]
       }
     ],
     "olusturma": "2026-04-13T20:41:17.465603",
-    "son_cls": 45.9,
-    "son_mod": "notr"
+    "son_cls": 100.0,
+    "son_mod": "yorgun"
   },
   {
     "uid": "U02",
@@ -941,7 +965,7 @@
       0.9803
     ],
     "taninma_dogrulugu": 0.99,
-    "kullanim_sayisi": 25,
+    "kullanim_sayisi": 30,
     "suruc_gecmis": [
       {
         "tarih": "2026-03-14",
@@ -1535,11 +1559,61 @@
             "mod": "enerjik"
           }
         ]
+      },
+      {
+        "tarih": "2026-04-15",
+        "seferler": [
+          {
+            "saat": 14,
+            "km": 36.0,
+            "cls_ort": 18.7,
+            "tuk_carpan": 0.95,
+            "mod": "enerjik"
+          },
+          {
+            "saat": 15,
+            "km": 36.0,
+            "cls_ort": 100.0,
+            "tuk_carpan": 1.22,
+            "mod": "yorgun"
+          }
+        ]
+      },
+      {
+        "tarih": "2026-04-21",
+        "seferler": [
+          {
+            "saat": 10,
+            "km": 36.0,
+            "cls_ort": 31.9,
+            "tuk_carpan": 1.0,
+            "mod": "notr"
+          }
+        ]
+      },
+      {
+        "tarih": "2026-04-27",
+        "seferler": [
+          {
+            "saat": 11,
+            "km": 78.0,
+            "cls_ort": 100.0,
+            "tuk_carpan": 1.0,
+            "mod": "yorgun"
+          },
+          {
+            "saat": 11,
+            "km": 78.0,
+            "cls_ort": 100.0,
+            "tuk_carpan": 1.0,
+            "mod": "yorgun"
+          }
+        ]
       }
     ],
     "olusturma": "2026-04-13T20:41:17.465603",
-    "son_cls": 22.7,
-    "son_mod": "enerjik"
+    "son_cls": 100.0,
+    "son_mod": "yorgun"
   },
   {
     "uid": "U03",
@@ -1691,8 +1765,8 @@
       1.3907,
       -0.3737
     ],
-    "taninma_dogrulugu": 0.696,
-    "kullanim_sayisi": 6,
+    "taninma_dogrulugu": 0.76,
+    "kullanim_sayisi": 10,
     "suruc_gecmis": [
       {
         "tarih": "2026-03-14",
@@ -2328,11 +2402,49 @@
             "mod": "notr"
           }
         ]
+      },
+      {
+        "tarih": "2026-04-15",
+        "seferler": [
+          {
+            "saat": 15,
+            "km": 36.0,
+            "cls_ort": 100.0,
+            "tuk_carpan": 1.22,
+            "mod": "yorgun"
+          },
+          {
+            "saat": 15,
+            "km": 36.0,
+            "cls_ort": 100.0,
+            "tuk_carpan": 1.22,
+            "mod": "yorgun"
+          },
+          {
+            "saat": 15,
+            "km": 36.0,
+            "cls_ort": 100.0,
+            "tuk_carpan": 1.22,
+            "mod": "yorgun"
+          }
+        ]
+      },
+      {
+        "tarih": "2026-04-27",
+        "seferler": [
+          {
+            "saat": 11,
+            "km": 11.0,
+            "cls_ort": 87.2,
+            "tuk_carpan": 1.0,
+            "mod": "yorgun"
+          }
+        ]
       }
     ],
     "olusturma": "2026-04-13T20:41:17.465603",
-    "son_cls": 44.1,
-    "son_mod": "notr"
+    "son_cls": 87.2,
+    "son_mod": "yorgun"
   },
   {
     "uid": "U04",
@@ -2484,8 +2596,8 @@
       0.5402,
       -0.2076
     ],
-    "taninma_dogrulugu": 0.936,
-    "kullanim_sayisi": 21,
+    "taninma_dogrulugu": 0.952,
+    "kullanim_sayisi": 22,
     "suruc_gecmis": [
       {
         "tarih": "2026-03-14",
@@ -3023,11 +3135,23 @@
             "mod": "enerjik"
           }
         ]
+      },
+      {
+        "tarih": "2026-04-15",
+        "seferler": [
+          {
+            "saat": 16,
+            "km": 64.0,
+            "cls_ort": 100.0,
+            "tuk_carpan": 1.22,
+            "mod": "yorgun"
+          }
+        ]
       }
     ],
     "olusturma": "2026-04-13T20:41:17.465603",
-    "son_cls": null,
-    "son_mod": null
+    "son_cls": 100.0,
+    "son_mod": "yorgun"
   },
   {
     "uid": "U05",
@@ -3179,8 +3303,8 @@
       -0.9155,
       0.2988
     ],
-    "taninma_dogrulugu": 0.872,
-    "kullanim_sayisi": 17,
+    "taninma_dogrulugu": 0.904,
+    "kullanim_sayisi": 19,
     "suruc_gecmis": [
       {
         "tarih": "2026-03-14",
@@ -3805,11 +3929,30 @@
             "mod": "notr"
           }
         ]
+      },
+      {
+        "tarih": "2026-04-27",
+        "seferler": [
+          {
+            "saat": 10,
+            "km": 8.0,
+            "cls_ort": 12.4,
+            "tuk_carpan": 1.0,
+            "mod": "enerjik"
+          },
+          {
+            "saat": 14,
+            "km": 36.0,
+            "cls_ort": 5.6,
+            "tuk_carpan": 0.95,
+            "mod": "enerjik"
+          }
+        ]
       }
     ],
     "olusturma": "2026-04-13T20:41:17.465603",
-    "son_cls": null,
-    "son_mod": null
+    "son_cls": 5.6,
+    "son_mod": "enerjik"
   },
   {
     "uid": "U06",
@@ -3961,8 +4104,8 @@
       -0.5901,
       -0.1421
     ],
-    "taninma_dogrulugu": 0.84,
-    "kullanim_sayisi": 15,
+    "taninma_dogrulugu": 0.856,
+    "kullanim_sayisi": 16,
     "suruc_gecmis": [
       {
         "tarih": "2026-03-14",
@@ -4593,10 +4736,22 @@
             "mod": "enerjik"
           }
         ]
+      },
+      {
+        "tarih": "2026-04-27",
+        "seferler": [
+          {
+            "saat": 14,
+            "km": 38.0,
+            "cls_ort": 6.2,
+            "tuk_carpan": 0.95,
+            "mod": "enerjik"
+          }
+        ]
       }
     ],
     "olusturma": "2026-04-13T20:41:17.465603",
-    "son_cls": 20.6,
+    "son_cls": 6.2,
     "son_mod": "enerjik"
   },
   {
@@ -4749,8 +4904,8 @@
       -0.1952,
       3.0516
     ],
-    "taninma_dogrulugu": 0.616,
-    "kullanim_sayisi": 1,
+    "taninma_dogrulugu": 0.648,
+    "kullanim_sayisi": 3,
     "suruc_gecmis": [
       {
         "tarih": "2026-03-14",
@@ -5282,10 +5437,29 @@
             "mod": "enerjik"
           }
         ]
+      },
+      {
+        "tarih": "2026-04-27",
+        "seferler": [
+          {
+            "saat": 10,
+            "km": 16.0,
+            "cls_ort": 32.5,
+            "tuk_carpan": 1.0,
+            "mod": "notr"
+          },
+          {
+            "saat": 14,
+            "km": 36.0,
+            "cls_ort": 5.6,
+            "tuk_carpan": 0.95,
+            "mod": "enerjik"
+          }
+        ]
       }
     ],
     "olusturma": "2026-04-13T20:41:17.465603",
-    "son_cls": 22.1,
+    "son_cls": 5.6,
     "son_mod": "enerjik"
   },
   {
@@ -5438,8 +5612,8 @@
       -0.3937,
       -0.5112
     ],
-    "taninma_dogrulugu": 0.696,
-    "kullanim_sayisi": 6,
+    "taninma_dogrulugu": 0.76,
+    "kullanim_sayisi": 10,
     "suruc_gecmis": [
       {
         "tarih": "2026-03-14",
@@ -5921,11 +6095,44 @@
       {
         "tarih": "2026-04-12",
         "seferler": []
+      },
+      {
+        "tarih": "2026-04-27",
+        "seferler": [
+          {
+            "saat": 11,
+            "km": 10.0,
+            "cls_ort": 100.0,
+            "tuk_carpan": 1.22,
+            "mod": "yorgun"
+          },
+          {
+            "saat": 12,
+            "km": 91.0,
+            "cls_ort": 100.0,
+            "tuk_carpan": 1.22,
+            "mod": "yorgun"
+          },
+          {
+            "saat": 12,
+            "km": 91.0,
+            "cls_ort": 100.0,
+            "tuk_carpan": 1.22,
+            "mod": "yorgun"
+          },
+          {
+            "saat": 12,
+            "km": 91.0,
+            "cls_ort": 100.0,
+            "tuk_carpan": 1.0,
+            "mod": "yorgun"
+          }
+        ]
       }
     ],
     "olusturma": "2026-04-13T20:41:17.465603",
-    "son_cls": null,
-    "son_mod": null
+    "son_cls": 100.0,
+    "son_mod": "yorgun"
   },
   {
     "uid": "U09",
@@ -6789,8 +6996,8 @@
       1.6388,
       0.4254
     ],
-    "taninma_dogrulugu": 0.712,
-    "kullanim_sayisi": 7,
+    "taninma_dogrulugu": 0.824,
+    "kullanim_sayisi": 14,
     "suruc_gecmis": [
       {
         "tarih": "2026-03-14",
@@ -7350,10 +7557,69 @@
             "mod": "stresli"
           }
         ]
+      },
+      {
+        "tarih": "2026-04-15",
+        "seferler": [
+          {
+            "saat": 14,
+            "km": 36.0,
+            "cls_ort": 36.9,
+            "tuk_carpan": 1.0,
+            "mod": "notr"
+          },
+          {
+            "saat": 15,
+            "km": 36.0,
+            "cls_ort": 100.0,
+            "tuk_carpan": 1.22,
+            "mod": "yorgun"
+          }
+        ]
+      },
+      {
+        "tarih": "2026-04-27",
+        "seferler": [
+          {
+            "saat": 10,
+            "km": 24.0,
+            "cls_ort": 100.0,
+            "tuk_carpan": 1.22,
+            "mod": "yorgun"
+          },
+          {
+            "saat": 10,
+            "km": 215.0,
+            "cls_ort": 100.0,
+            "tuk_carpan": 1.22,
+            "mod": "yorgun"
+          },
+          {
+            "saat": 11,
+            "km": 86.0,
+            "cls_ort": 100.0,
+            "tuk_carpan": 1.22,
+            "mod": "yorgun"
+          },
+          {
+            "saat": 11,
+            "km": 86.0,
+            "cls_ort": 100.0,
+            "tuk_carpan": 1.22,
+            "mod": "yorgun"
+          },
+          {
+            "saat": 11,
+            "km": 86.0,
+            "cls_ort": 100.0,
+            "tuk_carpan": 1.22,
+            "mod": "yorgun"
+          }
+        ]
       }
     ],
     "olusturma": "2026-04-13T20:41:17.465603",
-    "son_cls": null,
-    "son_mod": null
+    "son_cls": 100.0,
+    "son_mod": "yorgun"
   }
 ]

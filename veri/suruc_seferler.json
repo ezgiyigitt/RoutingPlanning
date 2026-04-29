@@ -1,0 +1,1305 @@
+{
+  "seferler": [
+    {
+      "anon_uid": "87b9084e0029b8a6",
+      "tarih": "2026-04-15",
+      "saat": 14,
+      "mesafe_km": 15.16,
+      "sure_dk": 0.0,
+      "ort_hiz_kmsa": 50.1,
+      "maks_hiz_kmsa": 72.6,
+      "ort_cls": 16.9,
+      "maks_cls": 16.9,
+      "mod": "enerjik",
+      "arac": "Tesla Model 3",
+      "dugum_sayisi": 4,
+      "nokta_sayisi": 212,
+      "anonim_rota": [
+        {
+          "lat": 39.921171,
+          "lon": 32.850063,
+          "hiz_kmsa": 42.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.920721,
+          "lon": 32.853405,
+          "hiz_kmsa": 56.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.92027,
+          "lon": 32.852562,
+          "hiz_kmsa": 58.5,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.91982,
+          "lon": 32.851917,
+          "hiz_kmsa": 47.3,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.91982,
+          "lon": 32.85125,
+          "hiz_kmsa": 62.3,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.919369,
+          "lon": 32.850464,
+          "hiz_kmsa": 56.0,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.919369,
+          "lon": 32.849756,
+          "hiz_kmsa": 59.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.918919,
+          "lon": 32.848991,
+          "hiz_kmsa": 38.6,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.918468,
+          "lon": 32.84826,
+          "hiz_kmsa": 34.8,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.918018,
+          "lon": 32.847486,
+          "hiz_kmsa": 56.7,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.918018,
+          "lon": 32.846828,
+          "hiz_kmsa": 48.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.917568,
+          "lon": 32.846137,
+          "hiz_kmsa": 62.3,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.917117,
+          "lon": 32.845349,
+          "hiz_kmsa": 54.6,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.917117,
+          "lon": 32.844689,
+          "hiz_kmsa": 37.2,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.917117,
+          "lon": 32.84402,
+          "hiz_kmsa": 47.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.916667,
+          "lon": 32.843268,
+          "hiz_kmsa": 47.5,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.916216,
+          "lon": 32.84253,
+          "hiz_kmsa": 60.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.916216,
+          "lon": 32.841804,
+          "hiz_kmsa": 56.6,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.915766,
+          "lon": 32.841022,
+          "hiz_kmsa": 48.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.915315,
+          "lon": 32.840317,
+          "hiz_kmsa": 53.2,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.915315,
+          "lon": 32.839661,
+          "hiz_kmsa": 46.3,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.914865,
+          "lon": 32.838871,
+          "hiz_kmsa": 45.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.914865,
+          "lon": 32.838243,
+          "hiz_kmsa": 50.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.914414,
+          "lon": 32.83741,
+          "hiz_kmsa": 47.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.913964,
+          "lon": 32.836756,
+          "hiz_kmsa": 47.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.913514,
+          "lon": 32.835914,
+          "hiz_kmsa": 42.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.913514,
+          "lon": 32.835264,
+          "hiz_kmsa": 51.6,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.913063,
+          "lon": 32.834009,
+          "hiz_kmsa": 41.5,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.913063,
+          "lon": 32.833314,
+          "hiz_kmsa": 50.0,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.912613,
+          "lon": 32.833151,
+          "hiz_kmsa": 47.3,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.912613,
+          "lon": 32.832455,
+          "hiz_kmsa": 41.8,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.912162,
+          "lon": 32.831662,
+          "hiz_kmsa": 49.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.911712,
+          "lon": 32.830346,
+          "hiz_kmsa": 31.0,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.911261,
+          "lon": 32.830201,
+          "hiz_kmsa": 54.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.910811,
+          "lon": 32.829399,
+          "hiz_kmsa": 43.7,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.910811,
+          "lon": 32.828188,
+          "hiz_kmsa": 43.3,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.910811,
+          "lon": 32.828096,
+          "hiz_kmsa": 65.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.91036,
+          "lon": 32.826794,
+          "hiz_kmsa": 42.7,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.90991,
+          "lon": 32.826585,
+          "hiz_kmsa": 57.2,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.90991,
+          "lon": 32.825893,
+          "hiz_kmsa": 57.8,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.909459,
+          "lon": 32.824581,
+          "hiz_kmsa": 67.7,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.909459,
+          "lon": 32.823878,
+          "hiz_kmsa": 51.6,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.909009,
+          "lon": 32.823127,
+          "hiz_kmsa": 43.3,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.908559,
+          "lon": 32.822451,
+          "hiz_kmsa": 41.2,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.908559,
+          "lon": 32.821702,
+          "hiz_kmsa": 65.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.908108,
+          "lon": 32.821484,
+          "hiz_kmsa": 53.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.907658,
+          "lon": 32.820799,
+          "hiz_kmsa": 55.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.907658,
+          "lon": 32.819498,
+          "hiz_kmsa": 57.0,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.907207,
+          "lon": 32.818833,
+          "hiz_kmsa": 41.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.907207,
+          "lon": 32.818097,
+          "hiz_kmsa": 47.8,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.906757,
+          "lon": 32.817424,
+          "hiz_kmsa": 49.5,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.906757,
+          "lon": 32.816706,
+          "hiz_kmsa": 42.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.906306,
+          "lon": 32.815946,
+          "hiz_kmsa": 65.3,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.905856,
+          "lon": 32.815174,
+          "hiz_kmsa": 57.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.905856,
+          "lon": 32.814544,
+          "hiz_kmsa": 45.0,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.905405,
+          "lon": 32.813836,
+          "hiz_kmsa": 51.3,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.904955,
+          "lon": 32.813089,
+          "hiz_kmsa": 57.8,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.904955,
+          "lon": 32.812318,
+          "hiz_kmsa": 68.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.904054,
+          "lon": 32.811493,
+          "hiz_kmsa": 35.7,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.904505,
+          "lon": 32.810967,
+          "hiz_kmsa": 46.0,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.903604,
+          "lon": 32.810107,
+          "hiz_kmsa": 47.7,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.903604,
+          "lon": 32.809426,
+          "hiz_kmsa": 50.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.903153,
+          "lon": 32.808681,
+          "hiz_kmsa": 62.0,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.903153,
+          "lon": 32.808015,
+          "hiz_kmsa": 48.3,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.902703,
+          "lon": 32.807318,
+          "hiz_kmsa": 49.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.902252,
+          "lon": 32.806522,
+          "hiz_kmsa": 37.6,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.902252,
+          "lon": 32.805818,
+          "hiz_kmsa": 48.8,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.902252,
+          "lon": 32.805185,
+          "hiz_kmsa": 55.0,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.901802,
+          "lon": 32.804367,
+          "hiz_kmsa": 39.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.901351,
+          "lon": 32.803686,
+          "hiz_kmsa": 48.5,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.900901,
+          "lon": 32.802907,
+          "hiz_kmsa": 41.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.900901,
+          "lon": 32.802232,
+          "hiz_kmsa": 66.5,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.90045,
+          "lon": 32.801503,
+          "hiz_kmsa": 47.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.90045,
+          "lon": 32.800802,
+          "hiz_kmsa": 42.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.9,
+          "lon": 32.800079,
+          "hiz_kmsa": 56.6,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.89955,
+          "lon": 32.800434,
+          "hiz_kmsa": 39.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.899099,
+          "lon": 32.800741,
+          "hiz_kmsa": 39.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.898649,
+          "lon": 32.80173,
+          "hiz_kmsa": 49.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.898198,
+          "lon": 32.802049,
+          "hiz_kmsa": 38.3,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.897297,
+          "lon": 32.802299,
+          "hiz_kmsa": 52.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.896847,
+          "lon": 32.803274,
+          "hiz_kmsa": 58.2,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.896396,
+          "lon": 32.803663,
+          "hiz_kmsa": 68.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.895946,
+          "lon": 32.803943,
+          "hiz_kmsa": 54.8,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.895495,
+          "lon": 32.804265,
+          "hiz_kmsa": 38.2,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.895045,
+          "lon": 32.805229,
+          "hiz_kmsa": 59.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.894595,
+          "lon": 32.805759,
+          "hiz_kmsa": 46.8,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.893694,
+          "lon": 32.805924,
+          "hiz_kmsa": 44.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.893694,
+          "lon": 32.806359,
+          "hiz_kmsa": 44.6,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.892793,
+          "lon": 32.807188,
+          "hiz_kmsa": 47.0,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.892342,
+          "lon": 32.807576,
+          "hiz_kmsa": 54.7,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.891892,
+          "lon": 32.807904,
+          "hiz_kmsa": 42.5,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.891441,
+          "lon": 32.808901,
+          "hiz_kmsa": 59.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.890541,
+          "lon": 32.809087,
+          "hiz_kmsa": 50.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.890541,
+          "lon": 32.809586,
+          "hiz_kmsa": 48.8,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.89009,
+          "lon": 32.809995,
+          "hiz_kmsa": 42.3,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.889189,
+          "lon": 32.810761,
+          "hiz_kmsa": 57.6,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.888739,
+          "lon": 32.811089,
+          "hiz_kmsa": 46.3,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.888739,
+          "lon": 32.811603,
+          "hiz_kmsa": 57.5,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.887838,
+          "lon": 32.811871,
+          "hiz_kmsa": 53.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.887387,
+          "lon": 32.812833,
+          "hiz_kmsa": 46.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.886937,
+          "lon": 32.812604,
+          "hiz_kmsa": 56.3,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.886036,
+          "lon": 32.813988,
+          "hiz_kmsa": 50.2,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.886036,
+          "lon": 32.813888,
+          "hiz_kmsa": 54.3,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.885135,
+          "lon": 32.814766,
+          "hiz_kmsa": 66.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.884685,
+          "lon": 32.815029,
+          "hiz_kmsa": 45.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.884234,
+          "lon": 32.815474,
+          "hiz_kmsa": 54.6,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.883784,
+          "lon": 32.816325,
+          "hiz_kmsa": 52.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.883333,
+          "lon": 32.816799,
+          "hiz_kmsa": 48.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.882883,
+          "lon": 32.816003,
+          "hiz_kmsa": 42.0,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.882883,
+          "lon": 32.815357,
+          "hiz_kmsa": 38.2,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.882883,
+          "lon": 32.814211,
+          "hiz_kmsa": 45.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.882883,
+          "lon": 32.813503,
+          "hiz_kmsa": 55.6,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.882432,
+          "lon": 32.812847,
+          "hiz_kmsa": 38.7,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.882432,
+          "lon": 32.811601,
+          "hiz_kmsa": 52.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.882432,
+          "lon": 32.810948,
+          "hiz_kmsa": 42.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.881982,
+          "lon": 32.810227,
+          "hiz_kmsa": 40.2,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.881982,
+          "lon": 32.80956,
+          "hiz_kmsa": 59.0,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.881532,
+          "lon": 32.808931,
+          "hiz_kmsa": 56.2,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.881532,
+          "lon": 32.808276,
+          "hiz_kmsa": 50.5,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.881532,
+          "lon": 32.807083,
+          "hiz_kmsa": 37.6,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.881081,
+          "lon": 32.806324,
+          "hiz_kmsa": 50.3,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.880631,
+          "lon": 32.80556,
+          "hiz_kmsa": 40.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.880631,
+          "lon": 32.804954,
+          "hiz_kmsa": 44.0,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.880631,
+          "lon": 32.803803,
+          "hiz_kmsa": 54.5,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.880631,
+          "lon": 32.803069,
+          "hiz_kmsa": 53.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.880631,
+          "lon": 32.802426,
+          "hiz_kmsa": 57.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.88018,
+          "lon": 32.801752,
+          "hiz_kmsa": 56.6,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.88018,
+          "lon": 32.801107,
+          "hiz_kmsa": 43.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.88018,
+          "lon": 32.799863,
+          "hiz_kmsa": 40.0,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.87973,
+          "lon": 32.799238,
+          "hiz_kmsa": 57.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.87973,
+          "lon": 32.798501,
+          "hiz_kmsa": 49.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.879279,
+          "lon": 32.797847,
+          "hiz_kmsa": 49.7,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.879279,
+          "lon": 32.796562,
+          "hiz_kmsa": 55.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.879279,
+          "lon": 32.796011,
+          "hiz_kmsa": 50.7,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.879279,
+          "lon": 32.795429,
+          "hiz_kmsa": 40.2,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.878829,
+          "lon": 32.794628,
+          "hiz_kmsa": 61.5,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.878378,
+          "lon": 32.793868,
+          "hiz_kmsa": 48.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.878829,
+          "lon": 32.792795,
+          "hiz_kmsa": 56.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.878378,
+          "lon": 32.792058,
+          "hiz_kmsa": 56.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.878378,
+          "lon": 32.791408,
+          "hiz_kmsa": 34.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.877928,
+          "lon": 32.790123,
+          "hiz_kmsa": 55.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.877928,
+          "lon": 32.790061,
+          "hiz_kmsa": 44.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.877928,
+          "lon": 32.788822,
+          "hiz_kmsa": 56.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.877477,
+          "lon": 32.788163,
+          "hiz_kmsa": 54.5,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.877477,
+          "lon": 32.787426,
+          "hiz_kmsa": 37.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.877477,
+          "lon": 32.786865,
+          "hiz_kmsa": 62.0,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.877027,
+          "lon": 32.785639,
+          "hiz_kmsa": 46.5,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.877027,
+          "lon": 32.784867,
+          "hiz_kmsa": 47.0,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.877027,
+          "lon": 32.784293,
+          "hiz_kmsa": 62.3,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.876577,
+          "lon": 32.78364,
+          "hiz_kmsa": 49.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.876577,
+          "lon": 32.782375,
+          "hiz_kmsa": 41.6,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.876577,
+          "lon": 32.781715,
+          "hiz_kmsa": 57.8,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.876126,
+          "lon": 32.781046,
+          "hiz_kmsa": 44.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.875676,
+          "lon": 32.78029,
+          "hiz_kmsa": 48.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.876126,
+          "lon": 32.779191,
+          "hiz_kmsa": 54.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.875676,
+          "lon": 32.778451,
+          "hiz_kmsa": 50.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.875676,
+          "lon": 32.77782,
+          "hiz_kmsa": 60.0,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.875225,
+          "lon": 32.777153,
+          "hiz_kmsa": 51.2,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.875225,
+          "lon": 32.776529,
+          "hiz_kmsa": 72.6,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.875225,
+          "lon": 32.775788,
+          "hiz_kmsa": 62.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.874775,
+          "lon": 32.775088,
+          "hiz_kmsa": 44.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.874775,
+          "lon": 32.773327,
+          "hiz_kmsa": 46.5,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.874775,
+          "lon": 32.773242,
+          "hiz_kmsa": 69.7,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.874324,
+          "lon": 32.772015,
+          "hiz_kmsa": 22.6,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.874324,
+          "lon": 32.771837,
+          "hiz_kmsa": 58.8,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.874324,
+          "lon": 32.770719,
+          "hiz_kmsa": 43.6,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.873874,
+          "lon": 32.769947,
+          "hiz_kmsa": 60.8,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.873874,
+          "lon": 32.769295,
+          "hiz_kmsa": 48.8,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.873423,
+          "lon": 32.768659,
+          "hiz_kmsa": 59.2,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.873423,
+          "lon": 32.76747,
+          "hiz_kmsa": 59.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.873423,
+          "lon": 32.766842,
+          "hiz_kmsa": 61.0,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.872973,
+          "lon": 32.765521,
+          "hiz_kmsa": 49.7,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.872973,
+          "lon": 32.764911,
+          "hiz_kmsa": 71.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.872973,
+          "lon": 32.764138,
+          "hiz_kmsa": 39.5,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.872973,
+          "lon": 32.763548,
+          "hiz_kmsa": 36.8,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.872523,
+          "lon": 32.762784,
+          "hiz_kmsa": 54.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.872523,
+          "lon": 32.762197,
+          "hiz_kmsa": 50.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.872072,
+          "lon": 32.760976,
+          "hiz_kmsa": 33.2,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.872072,
+          "lon": 32.760266,
+          "hiz_kmsa": 54.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.872072,
+          "lon": 32.759623,
+          "hiz_kmsa": 53.7,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.872072,
+          "lon": 32.758488,
+          "hiz_kmsa": 42.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.871622,
+          "lon": 32.758353,
+          "hiz_kmsa": 54.2,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.871622,
+          "lon": 32.757099,
+          "hiz_kmsa": 49.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.871171,
+          "lon": 32.75635,
+          "hiz_kmsa": 42.2,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.871171,
+          "lon": 32.755741,
+          "hiz_kmsa": 46.2,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.870721,
+          "lon": 32.754402,
+          "hiz_kmsa": 50.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.870721,
+          "lon": 32.753826,
+          "hiz_kmsa": 47.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.870721,
+          "lon": 32.753099,
+          "hiz_kmsa": 52.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.87027,
+          "lon": 32.752459,
+          "hiz_kmsa": 54.7,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.87027,
+          "lon": 32.751831,
+          "hiz_kmsa": 45.7,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.87027,
+          "lon": 32.750597,
+          "hiz_kmsa": 41.0,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.86982,
+          "lon": 32.749886,
+          "hiz_kmsa": 46.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.86982,
+          "lon": 32.74922,
+          "hiz_kmsa": 46.5,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.86982,
+          "lon": 32.748648,
+          "hiz_kmsa": 63.7,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.869369,
+          "lon": 32.747327,
+          "hiz_kmsa": 37.7,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.869369,
+          "lon": 32.746716,
+          "hiz_kmsa": 50.2,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.869369,
+          "lon": 32.746014,
+          "hiz_kmsa": 53.5,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.868919,
+          "lon": 32.745383,
+          "hiz_kmsa": 48.2,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.868919,
+          "lon": 32.744069,
+          "hiz_kmsa": 48.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.868919,
+          "lon": 32.743431,
+          "hiz_kmsa": 42.2,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.868468,
+          "lon": 32.742756,
+          "hiz_kmsa": 49.2,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.868468,
+          "lon": 32.742082,
+          "hiz_kmsa": 59.6,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.868468,
+          "lon": 32.741473,
+          "hiz_kmsa": 44.4,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.868018,
+          "lon": 32.740757,
+          "hiz_kmsa": 62.2,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.868018,
+          "lon": 32.739555,
+          "hiz_kmsa": 54.9,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.868018,
+          "lon": 32.738962,
+          "hiz_kmsa": 38.8,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.867568,
+          "lon": 32.738107,
+          "hiz_kmsa": 45.0,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.867568,
+          "lon": 32.737032,
+          "hiz_kmsa": 48.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.867568,
+          "lon": 32.736345,
+          "hiz_kmsa": 56.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.867117,
+          "lon": 32.735659,
+          "hiz_kmsa": 38.1,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.867117,
+          "lon": 32.735048,
+          "hiz_kmsa": 52.5,
+          "zaman_ofset_s": 0.0
+        },
+        {
+          "lat": 39.867117,
+          "lon": 32.746153,
+          "hiz_kmsa": 38.3,
+          "zaman_ofset_s": 0.0
+        }
+      ],
+      "rota_dugumler": [
+        "Kızılay",
+        "Söğütözü",
+        "Balgat",
+        "Çayyolu"
+      ],
+      "kayit_zamani": "2026-04-15T14:02:03.609529"
+    }
+  ],
+  "meta": {
+    "olusturma": "2026-04-15T14:02:03.609529",
+    "son_guncelleme": "2026-04-15T14:02:03.609529",
+    "toplam_sefer": 1
+  }
+}

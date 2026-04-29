@@ -1,0 +1,206 @@
+{
+  "Bahçelievler→Kızılay": {
+    "toplam_puan": 17.0,
+    "sayim": 6,
+    "ortalama": 2.8333,
+    "son_guncelleme": "2026-04-27T12:07:35"
+  },
+  "Bahçelievler→Elvankent": {
+    "toplam_puan": 5.0,
+    "sayim": 2,
+    "ortalama": 2.5,
+    "son_guncelleme": "2026-04-27T10:50:52"
+  },
+  "Batıkent→Elvankent": {
+    "toplam_puan": 2.0,
+    "sayim": 1,
+    "ortalama": 2.0,
+    "son_guncelleme": "2026-04-15T16:02:12"
+  },
+  "Batıkent→Yenimahalle": {
+    "toplam_puan": 2.0,
+    "sayim": 1,
+    "ortalama": 2.0,
+    "son_guncelleme": "2026-04-15T16:02:12"
+  },
+  "Ostim→Yenimahalle": {
+    "toplam_puan": 2.0,
+    "sayim": 1,
+    "ortalama": 2.0,
+    "son_guncelleme": "2026-04-15T16:02:12"
+  },
+  "Keçiören→Ostim": {
+    "toplam_puan": 2.0,
+    "sayim": 1,
+    "ortalama": 2.0,
+    "son_guncelleme": "2026-04-15T16:02:12"
+  },
+  "Esenboğa Havalimanı→Keçiören": {
+    "toplam_puan": 6.0,
+    "sayim": 2,
+    "ortalama": 3.0,
+    "son_guncelleme": "2026-04-21T10:38:00"
+  },
+  "A.Ö.Ü Kampüs→Kızılay": {
+    "toplam_puan": 16.0,
+    "sayim": 5,
+    "ortalama": 3.2,
+    "son_guncelleme": "2026-04-27T12:07:35"
+  },
+  "A.Ö.Ü Kampüs→Altındağ": {
+    "toplam_puan": 16.0,
+    "sayim": 5,
+    "ortalama": 3.2,
+    "son_guncelleme": "2026-04-27T12:07:35"
+  },
+  "Altındağ→Keçiören": {
+    "toplam_puan": 16.0,
+    "sayim": 5,
+    "ortalama": 3.2,
+    "son_guncelleme": "2026-04-27T12:07:35"
+  },
+  "Balgat→ODTÜ": {
+    "toplam_puan": 6.0,
+    "sayim": 2,
+    "ortalama": 3.0,
+    "son_guncelleme": "2026-04-27T10:50:52"
+  },
+  "Balgat→Söğütözü": {
+    "toplam_puan": 3.0,
+    "sayim": 1,
+    "ortalama": 3.0,
+    "son_guncelleme": "2026-04-27T10:46:06"
+  },
+  "Kızılay→Söğütözü": {
+    "toplam_puan": 3.0,
+    "sayim": 1,
+    "ortalama": 3.0,
+    "son_guncelleme": "2026-04-27T10:46:06"
+  },
+  "Bahçelievler→Gazi Üniversitesi": {
+    "toplam_puan": 18.0,
+    "sayim": 6,
+    "ortalama": 3.0,
+    "son_guncelleme": "2026-04-27T12:07:35"
+  },
+  "Balgat→Bilkent": {
+    "toplam_puan": 3.0,
+    "sayim": 1,
+    "ortalama": 3.0,
+    "son_guncelleme": "2026-04-27T10:50:52"
+  },
+  "Bilkent→Çayyolu": {
+    "toplam_puan": 3.0,
+    "sayim": 1,
+    "ortalama": 3.0,
+    "son_guncelleme": "2026-04-27T10:50:52"
+  },
+  "Gölbaşı→Çayyolu": {
+    "toplam_puan": 3.0,
+    "sayim": 1,
+    "ortalama": 3.0,
+    "son_guncelleme": "2026-04-27T10:50:52"
+  },
+  "Gölbaşı→Haymana": {
+    "toplam_puan": 3.0,
+    "sayim": 1,
+    "ortalama": 3.0,
+    "son_guncelleme": "2026-04-27T10:50:52"
+  },
+  "Haymana→Polatlı": {
+    "toplam_puan": 3.0,
+    "sayim": 1,
+    "ortalama": 3.0,
+    "son_guncelleme": "2026-04-27T10:50:52"
+  },
+  "Polatlı→Temelli": {
+    "toplam_puan": 3.0,
+    "sayim": 1,
+    "ortalama": 3.0,
+    "son_guncelleme": "2026-04-27T10:50:52"
+  },
+  "Temelli→Yenikent": {
+    "toplam_puan": 3.0,
+    "sayim": 1,
+    "ortalama": 3.0,
+    "son_guncelleme": "2026-04-27T10:50:52"
+  },
+  "Sincan→Yenikent": {
+    "toplam_puan": 3.0,
+    "sayim": 1,
+    "ortalama": 3.0,
+    "son_guncelleme": "2026-04-27T10:50:52"
+  },
+  "Eryaman→Sincan": {
+    "toplam_puan": 3.0,
+    "sayim": 1,
+    "ortalama": 3.0,
+    "son_guncelleme": "2026-04-27T10:50:52"
+  },
+  "Batıkent→Eryaman": {
+    "toplam_puan": 3.0,
+    "sayim": 1,
+    "ortalama": 3.0,
+    "son_guncelleme": "2026-04-27T10:50:52"
+  },
+  "Batıkent→Törekent": {
+    "toplam_puan": 3.0,
+    "sayim": 1,
+    "ortalama": 3.0,
+    "son_guncelleme": "2026-04-27T10:50:52"
+  },
+  "Elvankent→Törekent": {
+    "toplam_puan": 3.0,
+    "sayim": 1,
+    "ortalama": 3.0,
+    "son_guncelleme": "2026-04-27T10:50:52"
+  },
+  "Gölbaşı→Mürted": {
+    "toplam_puan": 5.0,
+    "sayim": 1,
+    "ortalama": 5.0,
+    "son_guncelleme": "2026-04-27T10:56:37"
+  },
+  "Kahramankazan→Kızılcahamam": {
+    "toplam_puan": 12.0,
+    "sayim": 4,
+    "ortalama": 3.0,
+    "son_guncelleme": "2026-04-27T12:07:35"
+  },
+  "Bağlum→Kahramankazan": {
+    "toplam_puan": 12.0,
+    "sayim": 4,
+    "ortalama": 3.0,
+    "son_guncelleme": "2026-04-27T12:07:35"
+  },
+  "Bağlum→Keçiören": {
+    "toplam_puan": 12.0,
+    "sayim": 4,
+    "ortalama": 3.0,
+    "son_guncelleme": "2026-04-27T12:07:35"
+  },
+  "Kızılcahamam→Kızılcahamam Kaplıca": {
+    "toplam_puan": 9.0,
+    "sayim": 3,
+    "ortalama": 3.0,
+    "son_guncelleme": "2026-04-27T12:07:35"
+  },
+  "Balgat→Çayyolu": {
+    "toplam_puan": 5.0,
+    "sayim": 1,
+    "ortalama": 5.0,
+    "son_guncelleme": "2026-04-28T10:26:38"
+  },
+  "Çayyolu→Ümitköy": {
+    "toplam_puan": 5.0,
+    "sayim": 1,
+    "ortalama": 5.0,
+    "son_guncelleme": "2026-04-28T10:26:38"
+  },
+  "Yaşamkent→Ümitköy": {
+    "toplam_puan": 5.0,
+    "sayim": 1,
+    "ortalama": 5.0,
+    "son_guncelleme": "2026-04-28T10:26:38"
+  }
+}

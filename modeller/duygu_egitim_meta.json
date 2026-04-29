@@ -1,0 +1,8 @@
+{
+  "egitim_tarihi": "2026-04-28T16:55:05.468395",
+  "ornek_sayisi": 1000,
+  "kaynak": "sentetik_pseudo_label",
+  "model": "MultiOutputRegressor(RandomForest)",
+  "ozellik_boyutu": 16,
+  "etiket_boyutu": 4
+}
