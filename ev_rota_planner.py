@@ -24,37 +24,16 @@ import random
 import time
 from datetime import datetime
 from typing import List, Tuple, Optional, Dict
-from batarya_modeli import EMAHoltBataryaModeli
-from surucu_yorgunluk_modeli import EMAHoltYorgunlukModeli
-
-# ── Konfor Hafızası (deneyimsel öğrenme)
+# ── DynamAffect Integration
 try:
-    from surucu_konfor_hafizasi import get_konfor_hafizasi
-    KONFOR_HAFIZASI = get_konfor_hafizasi()
+    from dynamaffect_integration import DynamAffectRoutePlanner, create_sample_graph
+    DYNAMAFFECT_VAR = True
 except ImportError:
-    KONFOR_HAFIZASI = None
+    DYNAMAFFECT_VAR = False
 
-
-# ── Kognitif Motor
-try:
-    from kognitif_motor import (
-        SurucuProfilYonetici, KognitivYukAnalizci,
-        DuyguRotaOptimizatoru, CokAmacliRotaOptimizatoru,
-        cls_to_mod, MOD_PARAMETRELERI, CV2_VAR,
-        MLDestekliKognitivYukAnalizci
-    )
-    KOGNITIF_VAR = True
-except ImportError:
-    KOGNITIF_VAR = False
-    CokAmacliRotaOptimizatoru = None  # type: ignore
-
-try:
-    from suruş_veri_kaydedici import SurusVeriKaydedici, GpsSimulatoru
-    # MLDestekliKognitivYukAnalizci already imported from kognitif_motor or placeholder
-    from duygu_regresyonu      import SurekliDuyguMotoru, cls_ve_duygu_ile_optimize
-    GELISMIS_VAR = True
-except ImportError:
-    GELISMIS_VAR = False
+KONFOR_HAFIZASI = None
+KOGNITIF_VAR = False
+GELISMIS_VAR = False
 
 GOOGLE_API_KEY   = ""
 TOMTOM_API_KEY   = "9vhNo3evFfz59k6RKFrNwO7oV0Czf3bu"
@@ -92,33 +71,37 @@ YOL_TIPLERI = {
 #  ANKARA DÜĞÜM NOKTALARI
 # ─────────────────────────────────────────────
 ANKARA_DUGUMLER = {
+    # Merkez
     "Kızılay":              (39.9208, 32.8541,  861),
+    "Ulus":                 (39.9250, 32.8600,  850),
+    "Hacettepe":            (39.8950, 32.8650,  940),
+    "TBMM":                 (39.9167, 32.8500,  870),
+    "Anıtkabir":            (39.9256, 32.8373,  880),
+    
+    # Ana İlçeler
     "Çankaya":              (39.9036, 32.8597,  930),
-    "Gaziosmanpaşa":        (39.9060, 32.8349,  895),
-    "Bahçelievler":         (39.9167, 32.8219,  870),
-    "Tandoğan":             (39.9167, 32.8333,  855),
-    "Söğütözü":             (39.9000, 32.8000,  875),
-    "Balgat":               (39.8833, 32.8167,  900),
+    "Keçiören":             (39.9700, 32.8650,  980),
+    "Mamak":                (39.9300, 32.7950,  900),
+    "Yenimahalle":          (39.9450, 32.8200,  880),
+    "Altındağ":             (39.9500, 32.8667,  870),
+    "Etimesgut":            (39.9500, 32.6833,  840),
+    
+    # Alt Bölgeler
+    "Ayrancı":              (39.9000, 32.8500,  910),
+    "Kavaklıdere":          (39.9050, 32.8600,  920),
+    "Küçükesat":            (39.9000, 32.8700,  940),
+    "Tunalı Hilmi":         (39.9050, 32.8550,  900),
     "Dikmen":               (39.8833, 32.8833,  960),
+    "Balgat":               (39.8833, 32.8167,  900),
+    "Söğütözü":             (39.9000, 32.8000,  875),
     "Çayyolu":              (39.8667, 32.7333,  970),
     "Ümitköy":              (39.8667, 32.7000,  990),
     "Yaşamkent":            (39.8583, 32.6833, 1010),
     "Konutkent":            (39.8750, 32.6667, 1020),
-    "Koru":                 (39.8500, 32.7167,  980),
     "Bilkent":              (39.8667, 32.7500,  950),
     "ODTÜ":                 (39.8917, 32.7750,  900),
-    "Mebusevleri":          (39.9100, 32.8100,  860),
-    "Emek":                 (39.9167, 32.7833,  870),
-    "Çukurambar":           (39.9050, 32.7950,  875),
-    "Ayrancı":              (39.9000, 32.8500,  910),
-    "Kavaklıdere":          (39.9050, 32.8600,  920),
-    "Çankaya Merkez":       (39.8950, 32.8650,  940),
-    "Küçükesat":            (39.9000, 32.8700,  940),
-    "Tunalı Hilmi":         (39.9050, 32.8550,  900),
-    "Yıldız":               (39.9083, 32.8450,  885),
-    "Güvenevler":           (39.9017, 32.8400,  890),
-    "Çetin Emeç":           (39.8950, 32.8200,  895),
-    "Keçiören":             (39.9700, 32.8650,  980),
+    
+    # Keçiören & Yenimahalle Alt-İlçeleri
     "Etlik":                (39.9583, 32.8833,  950),
     "Bağlum":               (40.0500, 32.8167, 1050),
     "Güçlükaya":            (40.0167, 32.8667, 1020),
@@ -239,7 +222,7 @@ YOLLAR = [
     ("Ayrancı","Dikmen",4,"sehir"),
     ("Küçükesat","Dikmen",3,"sehir"),("Küçükesat","Balgat",5,"bulvar"),
     ("Dikmen","Balgat",8,"bulvar"),("Dikmen","Çayyolu",12,"bulvar"),
-    ("Balgat","Söğütözü",4,"bulvar"),("Balgat","Çayyolu",12,"bulvar"),
+    ("Balgat","Söğütözü",4,"bulvar"),
     ("Balgat","ODTÜ",8,"bulvar"),("Balgat","Bilkent",10,"bulvar"),
     ("Çayyolu","Bilkent",5,"bulvar"),("Çayyolu","Ümitköy",5,"bulvar"),
     ("Çayyolu","Koru",5,"sehir"),("Çayyolu","Elvankent",10,"bulvar"),
@@ -259,6 +242,7 @@ YOLLAR = [
     ("Bahçelievler","Gazi Mahallesi",3,"sehir"),
     ("Gazi Mahallesi","Yenimahalle",5,"bulvar"),
     ("Gazi Mahallesi","AŞTİ",4,"sehir"),
+    ("Söğütözü","Bilkent",8,"sehir"),  # Eskişehir Yolu - yogun trafik, gerçek mesafe ~8km
     ("Söğütözü","Tandoğan",3,"sehir"),("Söğütözü","Yıldız",3,"sehir"),
     ("Yıldız","Güvenevler",2,"sehir"),("Yıldız","Çetin Emeç",4,"sehir"),
     ("Güvenevler","Gaziosmanpaşa",2,"sehir"),

@@ -1,0 +1,17 @@
+{
+  "driver_id": "U03",
+  "Q": {
+    "Esenbo\u011fa|\u00dcmitk\u00f6y|0|13|unknown|route_choice": {
+      "fast_route": 1.4000000000000001,
+      "economic_route": 0.0,
+      "scenic_route": 0.0,
+      "balanced_route": 0.0
+    }
+  },
+  "state_visits": {
+    "Esenbo\u011fa|\u00dcmitk\u00f6y|0|13|unknown|route_choice": 0
+  },
+  "episode_count": 1,
+  "epsilon": 0.2985,
+  "saved_at": "2026-05-25T13:57:19.785630"
+}

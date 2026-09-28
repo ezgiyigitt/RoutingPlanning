@@ -1,0 +1,125 @@
+{
+  "n_scenarios": 50,
+  "n_seeds": 10,
+  "table2": {
+    "Dijkstra": {
+      "time_mean": 48.734556565819574,
+      "time_sd": 13.296756467152727,
+      "energy_mean": 4.600800967274328,
+      "energy_sd": 1.1566586634473544,
+      "comfort_mean": 62.648844725279865,
+      "comfort_sd": 11.393618909412584,
+      "intersection_mean": 35.48,
+      "distance_mean": 20.683579395481885,
+      "n": 500,
+      "charging_stops": 0
+    },
+    "A*": {
+      "time_mean": 39.157641568402916,
+      "time_sd": 9.530140039632014,
+      "energy_mean": 4.874563884220196,
+      "energy_sd": 1.4781362183354252,
+      "comfort_mean": 74.34042450921098,
+      "comfort_sd": 7.49064370842219,
+      "intersection_mean": 19.702,
+      "distance_mean": 24.899139697654725,
+      "n": 500,
+      "charging_stops": 0
+    },
+    "NSGA-II": {
+      "time_mean": 39.464794224306054,
+      "time_sd": 9.847515315114867,
+      "energy_mean": 4.836963177568529,
+      "energy_sd": 1.4646800017987034,
+      "comfort_mean": 74.1963261041134,
+      "comfort_sd": 7.56516434466216,
+      "intersection_mean": 19.788,
+      "distance_mean": 24.44189599687578,
+      "n": 500,
+      "charging_stops": 0
+    },
+    "AffectEV": {
+      "time_mean": 40.42423511724124,
+      "time_sd": 10.3398959595495,
+      "energy_mean": 5.0495939014225,
+      "energy_sd": 1.5597002209101958,
+      "comfort_mean": 75.02237852918668,
+      "comfort_sd": 7.3040617195330135,
+      "intersection_mean": 18.796,
+      "distance_mean": 25.637006189056713,
+      "n": 2500,
+      "charging_stops": 0
+    }
+  },
+  "table3": {
+    "15": {
+      "comfort": 72.72756501249187,
+      "energy": 4.684041978679377,
+      "time": 39.98438373294483,
+      "distance": 23.14748325270233,
+      "regime": "D",
+      "regime_share": 0.652,
+      "regime_dist": {
+        "D": 0.652,
+        "V": 0.348
+      }
+    },
+    "30": {
+      "comfort": 73.9442970620543,
+      "energy": 4.801671091165172,
+      "time": 39.484850499400885,
+      "distance": 24.179152593193255,
+      "regime": "D",
+      "regime_share": 0.844,
+      "regime_dist": {
+        "D": 0.844,
+        "V": 0.156
+      }
+    },
+    "50": {
+      "comfort": 74.98561582242948,
+      "energy": 4.9621790730362685,
+      "time": 39.6486609303868,
+      "distance": 25.281290096453848,
+      "regime": "D",
+      "regime_share": 0.816,
+      "regime_dist": {
+        "D": 0.816,
+        "K": 0.102,
+        "V": 0.082
+      }
+    },
+    "65": {
+      "comfort": 76.67323791964725,
+      "energy": 5.379212824945929,
+      "time": 41.328911253324286,
+      "distance": 27.706972529623563,
+      "regime": "K",
+      "regime_share": 0.558,
+      "regime_dist": {
+        "D": 0.416,
+        "K": 0.558,
+        "V": 0.026
+      }
+    },
+    "85": {
+      "comfort": 76.78117682931048,
+      "energy": 5.420864539285752,
+      "time": 41.674369170149404,
+      "distance": 27.870132473310573,
+      "regime": "K",
+      "regime_share": 0.656,
+      "regime_dist": {
+        "D": 0.318,
+        "K": 0.656,
+        "V": 0.026
+      }
+    }
+  },
+  "paired_cls85_vs_astar": {
+    "comfort_diff_mean": 2.4407523200995103,
+    "energy_diff_mean": 0.5463006550655563,
+    "wilcoxon_p_comfort": 3.87270833006146e-58,
+    "n": 500
+  }
+}

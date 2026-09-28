@@ -1,0 +1,11 @@
+{
+  "episodes": 1000,
+  "seeds": 10,
+  "n_trips": 500,
+  "q_first100_mean": 5.515320455226566,
+  "q_last200_mean": 9.034037103320971,
+  "q_last200_sd_across_seeds": 0.6073243896995432,
+  "random_mean": 4.474534386620009,
+  "improvement_over_random_last200": 4.613211763151128,
+  "episode_ma_exceeds_random_by_1sd_first": 69
+}

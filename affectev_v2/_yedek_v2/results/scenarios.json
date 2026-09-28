@@ -1,0 +1,752 @@
+[
+ {
+  "id": 1,
+  "origin": 14513,
+  "destination": 3048,
+  "origin_latlon": [
+   39.884377,
+   32.656328
+  ],
+  "destination_latlon": [
+   39.996047,
+   32.563701
+  ],
+  "crow_km": 14.72,
+  "soc_initial": 68.4
+ },
+ {
+  "id": 2,
+  "origin": 6226,
+  "destination": 7960,
+  "origin_latlon": [
+   39.752733,
+   32.752133
+  ],
+  "destination_latlon": [
+   39.926793,
+   32.808448
+  ],
+  "crow_km": 19.94,
+  "soc_initial": 52.2
+ },
+ {
+  "id": 3,
+  "origin": 10962,
+  "destination": 6046,
+  "origin_latlon": [
+   39.965767,
+   32.857548
+  ],
+  "destination_latlon": [
+   39.992336,
+   32.767566
+  ],
+  "crow_km": 8.22,
+  "soc_initial": 77.4
+ },
+ {
+  "id": 4,
+  "origin": 12001,
+  "destination": 15420,
+  "origin_latlon": [
+   39.894896,
+   32.746812
+  ],
+  "destination_latlon": [
+   39.998682,
+   32.650041
+  ],
+  "crow_km": 14.19,
+  "soc_initial": 40.6
+ },
+ {
+  "id": 5,
+  "origin": 14625,
+  "destination": 11121,
+  "origin_latlon": [
+   39.887698,
+   32.744063
+  ],
+  "destination_latlon": [
+   39.872271,
+   32.861415
+  ],
+  "crow_km": 10.16,
+  "soc_initial": 47.9
+ },
+ {
+  "id": 6,
+  "origin": 2822,
+  "destination": 16474,
+  "origin_latlon": [
+   39.805133,
+   32.840059
+  ],
+  "destination_latlon": [
+   39.854557,
+   32.82439
+  ],
+  "crow_km": 5.66,
+  "soc_initial": 85.2
+ },
+ {
+  "id": 7,
+  "origin": 4812,
+  "destination": 10833,
+  "origin_latlon": [
+   39.985495,
+   32.554691
+  ],
+  "destination_latlon": [
+   39.981527,
+   32.665196
+  ],
+  "crow_km": 9.43,
+  "soc_initial": 75.2
+ },
+ {
+  "id": 8,
+  "origin": 2678,
+  "destination": 4734,
+  "origin_latlon": [
+   39.963771,
+   32.843483
+  ],
+  "destination_latlon": [
+   40.125314,
+   32.850209
+  ],
+  "crow_km": 17.97,
+  "soc_initial": 43.6
+ },
+ {
+  "id": 9,
+  "origin": 14546,
+  "destination": 8958,
+  "origin_latlon": [
+   39.902042,
+   32.691898
+  ],
+  "destination_latlon": [
+   39.997327,
+   32.609448
+  ],
+  "crow_km": 12.71,
+  "soc_initial": 55.9
+ },
+ {
+  "id": 10,
+  "origin": 4613,
+  "destination": 11298,
+  "origin_latlon": [
+   39.866005,
+   32.711292
+  ],
+  "destination_latlon": [
+   39.931992,
+   32.717854
+  ],
+  "crow_km": 7.36,
+  "soc_initial": 30.8
+ },
+ {
+  "id": 11,
+  "origin": 7936,
+  "destination": 7627,
+  "origin_latlon": [
+   39.954058,
+   32.820493
+  ],
+  "destination_latlon": [
+   39.962307,
+   32.726643
+  ],
+  "crow_km": 8.05,
+  "soc_initial": 51.9
+ },
+ {
+  "id": 12,
+  "origin": 2814,
+  "destination": 3328,
+  "origin_latlon": [
+   39.878939,
+   32.895428
+  ],
+  "destination_latlon": [
+   39.965955,
+   32.745081
+  ],
+  "crow_km": 16.06,
+  "soc_initial": 65.7
+ },
+ {
+  "id": 13,
+  "origin": 11300,
+  "destination": 5110,
+  "origin_latlon": [
+   39.94166,
+   32.718076
+  ],
+  "destination_latlon": [
+   40.081631,
+   32.833776
+  ],
+  "crow_km": 18.42,
+  "soc_initial": 42.6
+ },
+ {
+  "id": 14,
+  "origin": 15933,
+  "destination": 14900,
+  "origin_latlon": [
+   39.982061,
+   32.668999
+  ],
+  "destination_latlon": [
+   39.874749,
+   32.699489
+  ],
+  "crow_km": 12.21,
+  "soc_initial": 77.8
+ },
+ {
+  "id": 15,
+  "origin": 7890,
+  "destination": 16130,
+  "origin_latlon": [
+   39.925965,
+   32.883263
+  ],
+  "destination_latlon": [
+   39.910912,
+   32.65431
+  ],
+  "crow_km": 19.6,
+  "soc_initial": 63.8
+ },
+ {
+  "id": 16,
+  "origin": 10137,
+  "destination": 7372,
+  "origin_latlon": [
+   39.800334,
+   32.696614
+  ],
+  "destination_latlon": [
+   39.965956,
+   32.723129
+  ],
+  "crow_km": 18.55,
+  "soc_initial": 84.0
+ },
+ {
+  "id": 17,
+  "origin": 6957,
+  "destination": 11857,
+  "origin_latlon": [
+   39.911169,
+   32.806755
+  ],
+  "destination_latlon": [
+   39.900782,
+   32.733356
+  ],
+  "crow_km": 6.37,
+  "soc_initial": 48.8
+ },
+ {
+  "id": 18,
+  "origin": 1334,
+  "destination": 4456,
+  "origin_latlon": [
+   39.877916,
+   32.864596
+  ],
+  "destination_latlon": [
+   39.790318,
+   32.754099
+  ],
+  "crow_km": 13.56,
+  "soc_initial": 72.1
+ },
+ {
+  "id": 19,
+  "origin": 7288,
+  "destination": 3882,
+  "origin_latlon": [
+   39.866285,
+   32.64125
+  ],
+  "destination_latlon": [
+   39.972693,
+   32.644307
+  ],
+  "crow_km": 11.83,
+  "soc_initial": 59.6
+ },
+ {
+  "id": 20,
+  "origin": 8054,
+  "destination": 9881,
+  "origin_latlon": [
+   39.88619,
+   32.812153
+  ],
+  "destination_latlon": [
+   39.94505,
+   32.769615
+  ],
+  "crow_km": 7.48,
+  "soc_initial": 41.3
+ },
+ {
+  "id": 21,
+  "origin": 2641,
+  "destination": 12458,
+  "origin_latlon": [
+   39.964116,
+   32.731226
+  ],
+  "destination_latlon": [
+   39.922253,
+   32.654096
+  ],
+  "crow_km": 8.06,
+  "soc_initial": 62.9
+ },
+ {
+  "id": 22,
+  "origin": 7680,
+  "destination": 10588,
+  "origin_latlon": [
+   39.956913,
+   32.734831
+  ],
+  "destination_latlon": [
+   39.99182,
+   32.774466
+  ],
+  "crow_km": 5.15,
+  "soc_initial": 52.3
+ },
+ {
+  "id": 23,
+  "origin": 6112,
+  "destination": 7158,
+  "origin_latlon": [
+   39.952953,
+   32.767576
+  ],
+  "destination_latlon": [
+   39.993643,
+   32.831994
+  ],
+  "crow_km": 7.11,
+  "soc_initial": 59.7
+ },
+ {
+  "id": 24,
+  "origin": 14579,
+  "destination": 8006,
+  "origin_latlon": [
+   39.971616,
+   32.572732
+  ],
+  "destination_latlon": [
+   39.81542,
+   32.561981
+  ],
+  "crow_km": 17.39,
+  "soc_initial": 70.5
+ },
+ {
+  "id": 25,
+  "origin": 13596,
+  "destination": 9833,
+  "origin_latlon": [
+   39.98147,
+   32.738416
+  ],
+  "destination_latlon": [
+   39.893978,
+   32.648007
+  ],
+  "crow_km": 12.41,
+  "soc_initial": 55.0
+ },
+ {
+  "id": 26,
+  "origin": 13580,
+  "destination": 30,
+  "origin_latlon": [
+   39.989476,
+   32.724005
+  ],
+  "destination_latlon": [
+   39.908774,
+   32.786522
+  ],
+  "crow_km": 10.44,
+  "soc_initial": 77.6
+ },
+ {
+  "id": 27,
+  "origin": 14879,
+  "destination": 8848,
+  "origin_latlon": [
+   39.97317,
+   32.735131
+  ],
+  "destination_latlon": [
+   39.970914,
+   32.825269
+  ],
+  "crow_km": 7.69,
+  "soc_initial": 49.6
+ },
+ {
+  "id": 28,
+  "origin": 5172,
+  "destination": 1592,
+  "origin_latlon": [
+   39.982754,
+   32.62669
+  ],
+  "destination_latlon": [
+   39.939108,
+   32.840767
+  ],
+  "crow_km": 18.88,
+  "soc_initial": 84.3
+ },
+ {
+  "id": 29,
+  "origin": 6011,
+  "destination": 1000,
+  "origin_latlon": [
+   40.014006,
+   32.771483
+  ],
+  "destination_latlon": [
+   40.040726,
+   32.886073
+  ],
+  "crow_km": 10.2,
+  "soc_initial": 51.5
+ },
+ {
+  "id": 30,
+  "origin": 11943,
+  "destination": 12438,
+  "origin_latlon": [
+   39.7897,
+   32.742466
+  ],
+  "destination_latlon": [
+   39.887073,
+   32.619367
+  ],
+  "crow_km": 15.09,
+  "soc_initial": 48.9
+ },
+ {
+  "id": 31,
+  "origin": 6474,
+  "destination": 9660,
+  "origin_latlon": [
+   39.961444,
+   32.74486
+  ],
+  "destination_latlon": [
+   39.885215,
+   32.885506
+  ],
+  "crow_km": 14.69,
+  "soc_initial": 55.0
+ },
+ {
+  "id": 32,
+  "origin": 3240,
+  "destination": 13190,
+  "origin_latlon": [
+   39.972166,
+   32.743556
+  ],
+  "destination_latlon": [
+   39.947569,
+   32.793927
+  ],
+  "crow_km": 5.09,
+  "soc_initial": 87.5
+ },
+ {
+  "id": 33,
+  "origin": 16118,
+  "destination": 15135,
+  "origin_latlon": [
+   39.814948,
+   32.758236
+  ],
+  "destination_latlon": [
+   39.897295,
+   32.8163
+  ],
+  "crow_km": 10.41,
+  "soc_initial": 67.3
+ },
+ {
+  "id": 34,
+  "origin": 5081,
+  "destination": 2730,
+  "origin_latlon": [
+   40.041432,
+   32.843086
+  ],
+  "destination_latlon": [
+   39.955384,
+   32.865228
+  ],
+  "crow_km": 9.75,
+  "soc_initial": 86.8
+ },
+ {
+  "id": 35,
+  "origin": 4605,
+  "destination": 402,
+  "origin_latlon": [
+   39.854611,
+   32.684481
+  ],
+  "destination_latlon": [
+   39.917287,
+   32.863059
+  ],
+  "crow_km": 16.75,
+  "soc_initial": 47.9
+ },
+ {
+  "id": 36,
+  "origin": 1739,
+  "destination": 11445,
+  "origin_latlon": [
+   39.935223,
+   32.876191
+  ],
+  "destination_latlon": [
+   39.782909,
+   32.761862
+  ],
+  "crow_km": 19.55,
+  "soc_initial": 59.2
+ },
+ {
+  "id": 37,
+  "origin": 6135,
+  "destination": 219,
+  "origin_latlon": [
+   39.956317,
+   32.763984
+  ],
+  "destination_latlon": [
+   39.906193,
+   32.727212
+  ],
+  "crow_km": 6.39,
+  "soc_initial": 66.3
+ },
+ {
+  "id": 38,
+  "origin": 15901,
+  "destination": 8373,
+  "origin_latlon": [
+   39.979748,
+   32.670112
+  ],
+  "destination_latlon": [
+   39.941669,
+   32.831333
+  ],
+  "crow_km": 14.38,
+  "soc_initial": 66.1
+ },
+ {
+  "id": 39,
+  "origin": 7939,
+  "destination": 9609,
+  "origin_latlon": [
+   39.955077,
+   32.825385
+  ],
+  "destination_latlon": [
+   40.012306,
+   32.707226
+  ],
+  "crow_km": 11.91,
+  "soc_initial": 83.4
+ },
+ {
+  "id": 40,
+  "origin": 2938,
+  "destination": 3207,
+  "origin_latlon": [
+   39.971519,
+   32.906593
+  ],
+  "destination_latlon": [
+   39.980284,
+   32.752555
+  ],
+  "crow_km": 13.16,
+  "soc_initial": 86.5
+ },
+ {
+  "id": 41,
+  "origin": 9934,
+  "destination": 10887,
+  "origin_latlon": [
+   39.951878,
+   32.712763
+  ],
+  "destination_latlon": [
+   39.803626,
+   32.804375
+  ],
+  "crow_km": 18.24,
+  "soc_initial": 69.6
+ },
+ {
+  "id": 42,
+  "origin": 1184,
+  "destination": 9303,
+  "origin_latlon": [
+   39.864885,
+   32.702746
+  ],
+  "destination_latlon": [
+   39.776227,
+   32.825429
+  ],
+  "crow_km": 14.39,
+  "soc_initial": 85.0
+ },
+ {
+  "id": 43,
+  "origin": 16861,
+  "destination": 3974,
+  "origin_latlon": [
+   39.964378,
+   32.954589
+  ],
+  "destination_latlon": [
+   39.875422,
+   32.865282
+  ],
+  "crow_km": 12.48,
+  "soc_initial": 66.0
+ },
+ {
+  "id": 44,
+  "origin": 8079,
+  "destination": 2295,
+  "origin_latlon": [
+   39.899746,
+   32.767106
+  ],
+  "destination_latlon": [
+   39.954104,
+   32.727923
+  ],
+  "crow_km": 6.91,
+  "soc_initial": 66.9
+ },
+ {
+  "id": 45,
+  "origin": 2275,
+  "destination": 6863,
+  "origin_latlon": [
+   39.945244,
+   32.734727
+  ],
+  "destination_latlon": [
+   40.028001,
+   32.920001
+  ],
+  "crow_km": 18.27,
+  "soc_initial": 76.0
+ },
+ {
+  "id": 46,
+  "origin": 5703,
+  "destination": 1153,
+  "origin_latlon": [
+   39.998879,
+   32.848894
+  ],
+  "destination_latlon": [
+   39.879272,
+   32.871222
+  ],
+  "crow_km": 13.44,
+  "soc_initial": 66.4
+ },
+ {
+  "id": 47,
+  "origin": 10071,
+  "destination": 14602,
+  "origin_latlon": [
+   39.955219,
+   32.730401
+  ],
+  "destination_latlon": [
+   40.057618,
+   32.585926
+  ],
+  "crow_km": 16.77,
+  "soc_initial": 67.7
+ },
+ {
+  "id": 48,
+  "origin": 16097,
+  "destination": 5474,
+  "origin_latlon": [
+   39.930861,
+   32.759137
+  ],
+  "destination_latlon": [
+   39.956227,
+   32.89037
+  ],
+  "crow_km": 11.54,
+  "soc_initial": 69.3
+ },
+ {
+  "id": 49,
+  "origin": 10232,
+  "destination": 5761,
+  "origin_latlon": [
+   39.88535,
+   32.85577
+  ],
+  "destination_latlon": [
+   39.959941,
+   32.909653
+  ],
+  "crow_km": 9.48,
+  "soc_initial": 70.1
+ },
+ {
+  "id": 50,
+  "origin": 8030,
+  "destination": 4770,
+  "origin_latlon": [
+   39.90297,
+   32.702292
+  ],
+  "destination_latlon": [
+   39.978626,
+   32.548999
+  ],
+  "crow_km": 15.54,
+  "soc_initial": 32.0
+ }
+]

@@ -1,0 +1,24 @@
+{
+  "driver_id": "U10",
+  "Q": {
+    "Ke\u00e7i\u00f6ren|TBMM|1|12|unknown|route_choice": {
+      "fast_route": 1.4000000000000001,
+      "economic_route": 0.0,
+      "scenic_route": 0.0,
+      "balanced_route": 0.0
+    },
+    "Ke\u00e7i\u00f6ren|G\u00f6lba\u015f\u0131|0|9|unknown|route_choice": {
+      "fast_route": 0.0,
+      "economic_route": 0.0,
+      "scenic_route": 1.4000000000000001,
+      "balanced_route": 0.0
+    }
+  },
+  "state_visits": {
+    "Ke\u00e7i\u00f6ren|TBMM|1|12|unknown|route_choice": 0,
+    "Ke\u00e7i\u00f6ren|G\u00f6lba\u015f\u0131|0|9|unknown|route_choice": 0
+  },
+  "episode_count": 2,
+  "epsilon": 0.2970075,
+  "saved_at": "2026-06-05T09:49:06.604386"
+}

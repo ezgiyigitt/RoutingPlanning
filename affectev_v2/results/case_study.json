@@ -1,0 +1,144 @@
+{
+  "origin": "Keçiören",
+  "destination": "Bilkent",
+  "soc_initial": 75.0,
+  "seed": 0,
+  "front_size": 4,
+  "evaluations": 487,
+  "routes": {
+    "Geleneksel (A*)": {
+      "distance_km": 21.002556380851207,
+      "time_min": 42.44968022530077,
+      "energy_kwh": 4.537676425557641,
+      "comfort": 67.73761114204682,
+      "n_intersection": 22,
+      "n_stop": 29.881501430009525,
+      "traffic_density": 61.4896921447516,
+      "soc_final": 67.43720595740393,
+      "category": null,
+      "charging": false
+    },
+    "AffectEV / Düşük CLS (15)": {
+      "distance_km": 21.002556380851207,
+      "time_min": 42.44968022530077,
+      "energy_kwh": 4.537676425557641,
+      "comfort": 67.73761114204682,
+      "n_intersection": 22,
+      "n_stop": 29.881501430009525,
+      "traffic_density": 61.4896921447516,
+      "soc_final": 67.43720595740393,
+      "category": "Verimlilik",
+      "charging": false
+    },
+    "AffectEV / Yüksek CLS (85)": {
+      "distance_km": 21.11033677314983,
+      "time_min": 42.861910214384125,
+      "energy_kwh": 4.572772436221637,
+      "comfort": 67.82948686299238,
+      "n_intersection": 22,
+      "n_stop": 29.793231751446985,
+      "traffic_density": 61.162718057867565,
+      "soc_final": 67.37871260629727,
+      "category": "Konfor",
+      "charging": false
+    }
+  },
+  "low_cls_equals_astar": true,
+  "front": [
+    {
+      "energy": 4.537676425557641,
+      "time": 42.44968022530077,
+      "comfort": 67.73761114204682,
+      "distance": 21.002556380851207
+    },
+    {
+      "energy": 4.551538971213679,
+      "time": 42.69135324942342,
+      "comfort": 67.81190810028241,
+      "distance": 21.015414241567335
+    },
+    {
+      "energy": 4.558909890565599,
+      "time": 42.62023719026146,
+      "comfort": 67.75539109139277,
+      "distance": 21.0974789124337
+    },
+    {
+      "energy": 4.572772436221637,
+      "time": 42.861910214384125,
+      "comfort": 67.82948686299238,
+      "distance": 21.11033677314983
+    }
+  ],
+  "categories": {
+    "Verimlilik": 0,
+    "Dengeli": 0,
+    "Konfor": 3
+  },
+  "high_vs_astar_pct": {
+    "comfort_pct": 0.13563472256631767,
+    "energy_pct": 0.7734357272881826,
+    "distance_pct": 0.5131774929878979,
+    "time_pct": 0.9711026959342345
+  },
+  "mean_10_seeds": {
+    "Geleneksel (A*)": {
+      "distance_km": 21.00255638085121,
+      "time_min": 40.51747198794182,
+      "energy_kwh": 4.444700823281695,
+      "soc_final": 67.59216529453049,
+      "comfort": 69.70242944042892
+    },
+    "AffectEV / Düşük CLS (15)": {
+      "distance_km": 21.00255638085121,
+      "time_min": 40.51747198794182,
+      "energy_kwh": 4.444700823281695,
+      "soc_final": 67.59216529453049,
+      "comfort": 69.70242944042892
+    },
+    "AffectEV / Yüksek CLS (85)": {
+      "distance_km": 21.133730575577694,
+      "time_min": 41.389528750534886,
+      "energy_kwh": 4.506099557586873,
+      "soc_final": 67.48983407068854,
+      "comfort": 69.78522982801101
+    }
+  },
+  "figure1": {
+    "origin": "Sincan",
+    "destination": "Ulus",
+    "seed": 0,
+    "front_size": 38,
+    "evaluated": 618,
+    "activation": {
+      "Dengeli": [
+        15,
+        30
+      ],
+      "Verimlilik": [
+        50
+      ],
+      "Konfor": [
+        65,
+        85
+      ]
+    },
+    "categories": {
+      "Verimlilik": {
+        "energy": 5.258412234674847,
+        "time": 45.06012639299376,
+        "comfort": 70.33183857432307
+      },
+      "Dengeli": {
+        "energy": 5.318337623706636,
+        "time": 44.44994924665196,
+        "comfort": 70.23213511146172
+      },
+      "Konfor": {
+        "energy": 5.511499819621347,
+        "time": 45.78613072304755,
+        "comfort": 72.0808823053752
+      }
+    }
+  }
+}

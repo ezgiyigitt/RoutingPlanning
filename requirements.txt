@@ -9,3 +9,6 @@ requests
 tomtom-rest-python
 googlemaps
 cryptography
+fastapi
+pydantic
+uvicorn

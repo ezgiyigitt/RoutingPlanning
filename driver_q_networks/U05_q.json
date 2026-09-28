@@ -1,0 +1,24 @@
+{
+  "driver_id": "U05",
+  "Q": {
+    "Ke\u00e7i\u00f6ren|ODT\u00dc|0|21|unknown|route_choice": {
+      "fast_route": 0.0,
+      "economic_route": 0.0,
+      "scenic_route": 0.0,
+      "balanced_route": 1.4000000000000001
+    },
+    "Ayranc\u0131|Esenbo\u011fa|1|12|unknown|route_choice": {
+      "fast_route": 0.0,
+      "economic_route": 0.0,
+      "scenic_route": 0.0,
+      "balanced_route": 1.4000000000000001
+    }
+  },
+  "state_visits": {
+    "Ke\u00e7i\u00f6ren|ODT\u00dc|0|21|unknown|route_choice": 0,
+    "Ayranc\u0131|Esenbo\u011fa|1|12|unknown|route_choice": 0
+  },
+  "episode_count": 2,
+  "epsilon": 0.2970075,
+  "saved_at": "2026-05-31T12:45:33.825633"
+}

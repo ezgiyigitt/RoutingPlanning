@@ -1,0 +1,38 @@
+{
+  "driver_id": "U08",
+  "Q": {
+    "Tunal\u0131 Hilmi|\u015eentepe|0|12|unknown|route_choice": {
+      "fast_route": 0.0,
+      "economic_route": 0.0,
+      "scenic_route": 0.0,
+      "balanced_route": 1.4000000000000001
+    },
+    "Sincan|Pursaklar|1|9|unknown|route_choice": {
+      "fast_route": 1.4000000000000001,
+      "economic_route": 0.0,
+      "scenic_route": 0.0,
+      "balanced_route": 0.0
+    },
+    "G\u00f6lba\u015f\u0131|Esenbo\u011fa|0|9|unknown|route_choice": {
+      "fast_route": 0.0,
+      "economic_route": 0.0,
+      "scenic_route": 1.4000000000000001,
+      "balanced_route": 0.0
+    },
+    "G\u00f6lba\u015f\u0131|Esenbo\u011fa|1|14|unknown|route_choice": {
+      "fast_route": 1.4000000000000001,
+      "economic_route": 0.0,
+      "scenic_route": 0.0,
+      "balanced_route": 0.0
+    }
+  },
+  "state_visits": {
+    "Tunal\u0131 Hilmi|\u015eentepe|0|12|unknown|route_choice": 0,
+    "Sincan|Pursaklar|1|9|unknown|route_choice": 0,
+    "G\u00f6lba\u015f\u0131|Esenbo\u011fa|0|9|unknown|route_choice": 0,
+    "G\u00f6lba\u015f\u0131|Esenbo\u011fa|1|14|unknown|route_choice": 0
+  },
+  "episode_count": 4,
+  "epsilon": 0.2940448501875,
+  "saved_at": "2026-06-05T14:09:17.843785"
+}

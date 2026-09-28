@@ -1,0 +1,24 @@
+{
+  "driver_id": "U06",
+  "Q": {
+    "K\u0131z\u0131lay|Ya\u015famkent|-2|21|unknown|route_choice": {
+      "fast_route": 0.0,
+      "economic_route": 0.0,
+      "scenic_route": 0.0,
+      "balanced_route": 1.4000000000000001
+    },
+    "Polatl\u0131|Esenbo\u011fa|-1|22|unknown|route_choice": {
+      "fast_route": 0.0,
+      "economic_route": 0.0,
+      "scenic_route": 1.4000000000000001,
+      "balanced_route": 0.0
+    }
+  },
+  "state_visits": {
+    "K\u0131z\u0131lay|Ya\u015famkent|-2|21|unknown|route_choice": 0,
+    "Polatl\u0131|Esenbo\u011fa|-1|22|unknown|route_choice": 0
+  },
+  "episode_count": 2,
+  "epsilon": 0.2970075,
+  "saved_at": "2026-06-04T22:25:30.938381"
+}

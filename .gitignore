@@ -4,3 +4,12 @@ cache/
 *.html
 .env
 venv/
+node_modules
+
+# Kurulum dosyaları, günlükler, derleme çıktıları
+*.msi
+*.log
+affectev_v2/frontend/dist/
+
+# Web arayüzünün giriş sayfası (*.html kuralından muaf)
+!affectev_v2/frontend/index.html

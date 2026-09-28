@@ -1,0 +1,50 @@
+{
+  "origin": "Keçiören",
+  "destination": "Bilkent",
+  "soc_initial": 75.0,
+  "seed": 0,
+  "front_size": 46,
+  "evaluations": 499,
+  "routes": {
+    "Geleneksel (A*)": {
+      "distance_km": 21.005042578748792,
+      "time_min": 34.89399896741215,
+      "energy_kwh": 2.719411486910808,
+      "comfort": 82.41214612959982,
+      "n_intersection": 4,
+      "n_stop": 11,
+      "traffic_density": 61.43926935200089,
+      "soc_final": 70.46764752181532,
+      "charging": false
+    },
+    "AffectEV / Düşük CLS (15)": {
+      "distance_km": 21.005042578748792,
+      "time_min": 34.89399896741215,
+      "energy_kwh": 2.719411486910808,
+      "comfort": 82.41214612959982,
+      "n_intersection": 4,
+      "n_stop": 11,
+      "traffic_density": 61.43926935200089,
+      "soc_final": 70.46764752181532,
+      "charging": false
+    },
+    "AffectEV / Yüksek CLS (85)": {
+      "distance_km": 23.02471967280339,
+      "time_min": 40.910371062121456,
+      "energy_kwh": 2.887531948384189,
+      "comfort": 83.52616412817466,
+      "n_intersection": 3,
+      "n_stop": 10,
+      "traffic_density": 59.86917935912667,
+      "soc_final": 70.18744675269302,
+      "charging": false
+    }
+  },
+  "low_cls_equals_astar": true,
+  "high_vs_astar_pct": {
+    "comfort_pct": 1.3517643343773058,
+    "energy_pct": 6.182236939226951,
+    "distance_pct": 9.615201142691056,
+    "time_pct": 17.24185324911614
+  }
+}

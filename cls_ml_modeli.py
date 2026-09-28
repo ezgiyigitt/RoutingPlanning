@@ -611,7 +611,7 @@ if __name__ == "__main__":
         cls = motor.tahmin_et(
             ear_norm=s["ear_norm"], blink_norm=s["blink_norm"],
             kas_norm=s["kas_norm"], saat=s["saat"])
-        print(f"  [{s['aciklama']:30s}] → CLS = {cls:.1f}")
+        print(f"  [{s['aciklama']:30s}] -> CLS = {cls:.1f}")
 
     print("\n--- Model Performansı (5-fold CV) ---")
     perf = motor.model_performans_raporla()

@@ -1,7 +1,4 @@
 import os
-import matplotlib.pyplot as plt
-import numpy as np
-
 from ev_rota_planner import Graf, yol_metrikleri, ANKARA_DUGUMLER, YOLLAR
 from kognitif_motor import CokAmacliRotaOptimizatoru
 from cls_ml_modeli import OgrenebilirCLSMotoru
@@ -41,14 +38,8 @@ def run_ablation_study():
         for cls_val, cls_isim in surucu_durumlari:
             f.write(f"## {cls_isim} Durumu Analizi\n\n")
             
-            # Grafikler için verileri biriktirme
-            grafik_senaryolar = []
-            konfor_skorlari = {"Model B (Eko)": [], "Model C (Heuristik)": [], "Model D (Önerilen)": []}
-            f_skorlari = {"Model B (Eko)": [], "Model C (Heuristik)": [], "Model D (Önerilen)": []}
-
             for bas, bit, aciklama in senaryolar:
                 f.write(f"### Güzergah: {bas} -> {bit} ({aciklama})\n")
-                grafik_senaryolar.append(f"{bas}->{bit[:5]}")
                 
                 # Model A (Mesafe)
                 rota_a, _ = graf.dijkstra(bas, bit, "mesafe")
@@ -89,40 +80,7 @@ def run_ablation_study():
                     
                     f.write(f"| {isimler[k]} | {metrek['mesafe_km']} | {metrek['sure_dk']} | {metrek['enerji_kwh']:.3f} | {konfor:.3f} | {f_obj:.4f} |\n")
                     
-                    if k == "B":
-                        konfor_skorlari["Model B (Eko)"].append(konfor)
-                        f_skorlari["Model B (Eko)"].append(f_obj)
-                    elif k == "C":
-                        konfor_skorlari["Model C (Heuristik)"].append(konfor)
-                        f_skorlari["Model C (Heuristik)"].append(f_obj)
-                    elif k == "D":
-                        konfor_skorlari["Model D (Önerilen)"].append(konfor)
-                        f_skorlari["Model D (Önerilen)"].append(f_obj)
-                        
                 f.write("\n")
-
-            # MATPLOTLIB GRAFİKLERİ ÇİZİMİ
-            x = np.arange(len(grafik_senaryolar))
-            width = 0.25
-
-            fig, ax = plt.subplots(figsize=(9, 5))
-            
-            bar1 = ax.bar(x - width, konfor_skorlari["Model B (Eko)"], width, label='Model B (Eko)', color='#ff9999')
-            bar2 = ax.bar(x, konfor_skorlari["Model C (Heuristik)"], width, label='Model C (Heuristik)', color='#66b3ff')
-            bar3 = ax.bar(x + width, konfor_skorlari["Model D (Önerilen)"], width, label='Model D (Önerilen)', color='#99ff99')
-
-            ax.set_ylabel('Sürücü Rahatsızlık (Konfor) Skoru (Düşük Daha İyi)')
-            cls_safe = str(int(cls_val))
-            ax.set_title(f'Sürücü Konfor Karşılaştırması ({cls_isim})')
-            ax.set_xticks(x)
-            ax.set_xticklabels(grafik_senaryolar)
-            ax.legend()
-            
-            fig.tight_layout()
-            plt.savefig(f'literatur_grafik_konfor_cls_{cls_safe}.png', dpi=150)
-            plt.close()
-            
-            f.write(f"\n![Konfor Skoru Karşılaştırması (CLS={cls_safe})](literatur_grafik_konfor_cls_{cls_safe}.png)\n\n")
 
     print(f"Deney tamamlandı! '{rapor_dosyasi}' dosyasına ve grafik PNG'lerine bakabilirsiniz.")
 

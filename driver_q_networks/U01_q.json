@@ -1,0 +1,31 @@
+{
+  "driver_id": "U01",
+  "Q": {
+    "Esenbo\u011fa|Polatl\u0131|1|11|unknown|route_choice": {
+      "fast_route": 1.4000000000000001,
+      "economic_route": 0.0,
+      "scenic_route": 0.0,
+      "balanced_route": 0.0
+    },
+    "Esenbo\u011fa|Polatl\u0131|0|9|unknown|route_choice": {
+      "fast_route": 0.0,
+      "economic_route": 0.0,
+      "scenic_route": 1.4000000000000001,
+      "balanced_route": 0.0
+    },
+    "G\u00f6lba\u015f\u0131|Esenbo\u011fa|0|15|unknown|route_choice": {
+      "fast_route": 0.0,
+      "economic_route": 0.0,
+      "scenic_route": 1.4000000000000001,
+      "balanced_route": 0.0
+    }
+  },
+  "state_visits": {
+    "Esenbo\u011fa|Polatl\u0131|1|11|unknown|route_choice": 0,
+    "Esenbo\u011fa|Polatl\u0131|0|9|unknown|route_choice": 0,
+    "G\u00f6lba\u015f\u0131|Esenbo\u011fa|0|15|unknown|route_choice": 0
+  },
+  "episode_count": 3,
+  "epsilon": 0.29552246249999997,
+  "saved_at": "2026-06-05T15:57:34.648996"
+}
