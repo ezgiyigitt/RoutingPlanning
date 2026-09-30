@@ -76,7 +76,6 @@ Taşıt yönlendirmede kullanılan standart algoritmalar genellikle ağırlıkla
 
 Bu çelişkiyi çözümlemek adına Dinamik NSGA-II tercih edilmiştir [6], [14]. Optimizasyon süreci, kullanıcıya "mutlak tek bir rota" dayatmak yerine; Konfor Odaklı, Dengeli ve Verimlilik Odaklı olmak üzere Pareto-optimal cephesinde yer alan bir çözüm kümesi sunmaktadır (Şekil 1).
 
-![Şekil 1: Pareto-Optimal Çözüm Cephesi](C:\Projects\RoutingPlaning\pareto_front.png)
 **Şekil 1:** Enerji ve Seyahat Süresi Düzleminde Pareto-Optimal Çözüm Cephesi ve Seçenek Dağılımları
 
 Kullanıcıya sunulan bu alternatifler arasından yapılan nihai seçimler ve seyir sonrasındaki sentetik memnuniyet oranları, Markov Karar Süreci modeline dayalı bir Q-Learning altyapısını beslemektedir [8]. Algoritmanın karar mekanizmasını şekillendiren anlık durum uzayı (state space) $s$, sürücü ve araç dinamiklerini bütüncül temsil edecek biçimde formüle edilmiştir:
@@ -100,7 +99,6 @@ Sistemin doğrulanması amacıyla, Ankara şehrine ait OpenStreetMap tabanlı yo
 
 Sistemin Q-Learning modülünün uzun dönemli öğrenme performansı, Şekil 2'de görselleştirilmiştir. Standart sapma bantlarıyla desteklenen grafik, modelin rastgele politikaya (taban çizgisi) kıyasla yaklaşık 250. döngüden itibaren başarılı bir şekilde yakınsadığını doğrulamaktadır.
 
-![Şekil 2: Q-Learning Yakınsaması](C:\Projects\RoutingPlaning\qlearning_convergence.png)
 **Şekil 2:** Q-Learning Modeli Kümülatif Ödül Yakınsama Eğrisi (10 tohum ortalaması, $\pm1$ standart sapma bandı ile)
 
 Çok amaçlı optimizasyon (NSGA-II) ve CLS adaptasyonunun katkılarını adil biçimde değerlendirebilmek için hazırlanan ablasyon çalışması ve performans karşılaştırması Tablo 2'de sunulmuştur. Kavşak sayısı, nesnel bir konfor göstergesi olarak tabloya dâhil edilmiştir.
@@ -131,7 +129,6 @@ Tablo 3, beş kademeli ağırlık şemasının pratikte iki ana davranışsal re
 
 Bu davranışın harita üzerindeki somut yansıması Şekil 3'te ve verileri Tablo 4'te (Keçiören → Bilkent, Başlangıç SoC: %75 senaryosu) verilmiştir.
 
-![Şekil 3: Rota Alternatiflerinin Harita Üzerinde Karşılaştırması](C:\Projects\RoutingPlaning\map_comparison.png)
 **Şekil 3:** Geleneksel A* Rotası (Düz Çizgi) ile Yüksek CLS AffectEV Rotasının (Kesikli Çizgi) Harita Üzerinde Karşılaştırması
 
 **Tablo 4: Keçiören - Bilkent Senaryosu Rota Üretimi Karşılaştırması**
